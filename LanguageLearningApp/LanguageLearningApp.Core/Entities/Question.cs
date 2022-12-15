@@ -15,5 +15,6 @@ namespace LanguageLearningApp.Core.Entities
         public string QuestionText { get; set; }
         public QuestionDifficulty Difficulty { get; set; }
         public string CorrectAnswer { get; set; }
+        public Lesson Lesson { get; set; }
     }
 }
