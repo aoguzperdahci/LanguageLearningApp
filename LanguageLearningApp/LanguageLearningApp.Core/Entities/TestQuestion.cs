@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace LanguageLearningApp.Core.Entities
 {
-    public class TestQuestion:Question
+
+    public class TestQuestion: Question
+
     {
         public string ChoiceA { get; set; }
         public string ChoiceB { get; set; }
@@ -14,4 +16,8 @@ namespace LanguageLearningApp.Core.Entities
         public string ChoiceD { get; set; }
         public string ChoiceE { get; set; }
     }
+
 }
+
+
+

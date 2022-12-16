@@ -14,6 +14,5 @@ namespace LanguageLearningApp.Core.Entities
         public int Id { get; set; }
         public string Link { get; set; }
         public MultimediaType Type { get; set; }
-
     }
 }
