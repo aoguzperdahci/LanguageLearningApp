@@ -13,7 +13,7 @@ function App() {
           {/* <Route index element={<HomePage />}/> */}
         </Routes>
 
-        <div style={{ height: "1000px", backgroundColor: "green" }}></div>
+        <div style={{ height: "1000px", backgroundColor: "#EEE3CB" }}></div>
 
         <ToastComponent />
       </div>
