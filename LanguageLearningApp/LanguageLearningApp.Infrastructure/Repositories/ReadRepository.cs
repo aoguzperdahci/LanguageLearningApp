@@ -2,6 +2,7 @@
 using LanguageLearningApp.Core.Interfaces.Repository;
 using LanguageLearningApp.Infrastructure.Contexts;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,28 +12,25 @@ using System.Threading.Tasks;
 
 namespace LanguageLearningApp.Infrastructure.Repositories
 {
-    public class ReadRepository<T> : IReadRepository<T> where T : class  
-    {
-        LanguageLearningContext _context;
-
-        public ReadRepository(LanguageLearningContext context)
+    public class ReadRepository<TEntity,TContext> : IRepository<TEntity> where TEntity : class,IEntity,new()
+        where TContext : DbContext,new()
+    {   
+        public TEntity Get(Expression<Func<TEntity, bool>> filter)
         {
-            _context = context;
-        }
-
-        public DbSet<T> Table => _context.Set<T>();
-
-        public T Get(Expression<Func<T, bool>> filter)
-        {
-            return Table.SingleOrDefault(filter);
-            
+            using (TContext context = new TContext()) 
+            {
+                return context.Set<TEntity>().SingleOrDefault(filter);
+            }
 
         }
 
-        public List<T> GetAll(Expression<Func<T, bool>> filter = null)
+        public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
         {
-            return filter == null
-                 ? Table.ToList() : Table.Where(filter).ToList();
+            using(TContext context = new TContext())
+            {
+                return filter == null
+                 ? context.Set<TEntity>().ToList() : context.Set<TEntity>().Where(filter).ToList();
+            }    
         }
     }
 }

@@ -100,6 +100,68 @@ namespace LanguageLearningApp.Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ExamQuestions",
+                columns: table => new
+                {
+                    ExamId = table.Column<int>(type: "INTEGER", nullable: false),
+                    QuestionNumber = table.Column<int>(type: "INTEGER", nullable: false),
+                    QuestionId = table.Column<int>(type: "INTEGER", nullable: false),
+                    StudentAnswer = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ExamQuestions", x => new { x.ExamId, x.QuestionNumber });
+                    table.ForeignKey(
+                        name: "FK_ExamQuestions_Questions_QuestionId",
+                        column: x => x.QuestionId,
+                        principalTable: "Questions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Exams",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    StudentId = table.Column<int>(type: "INTEGER", nullable: false),
+                    LessonId = table.Column<int>(type: "INTEGER", nullable: false),
+                    ExamResult = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Exams", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Exams_Lessons_LessonId",
+                        column: x => x.LessonId,
+                        principalTable: "Lessons",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Exams_Students_StudentId",
+                        column: x => x.StudentId,
+                        principalTable: "Students",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ExamQuestions_QuestionId",
+                table: "ExamQuestions",
+                column: "QuestionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Exams_LessonId",
+                table: "Exams",
+                column: "LessonId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Exams_StudentId",
+                table: "Exams",
+                column: "StudentId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_Lessons_MultimediaContentId",
                 table: "Lessons",
@@ -119,6 +181,12 @@ namespace LanguageLearningApp.Infrastructure.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "ExamQuestions");
+
+            migrationBuilder.DropTable(
+                name: "Exams");
+
             migrationBuilder.DropTable(
                 name: "Questions");
 

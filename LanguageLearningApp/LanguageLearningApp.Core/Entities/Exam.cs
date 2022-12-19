@@ -13,5 +13,6 @@ namespace LanguageLearningApp.Core.Entities
         public int Id { get; set; }
         public Student Student { get; set; }
         public Lesson Lesson { get; set; }
+        public int ExamResult { get; set; }
     }
 }

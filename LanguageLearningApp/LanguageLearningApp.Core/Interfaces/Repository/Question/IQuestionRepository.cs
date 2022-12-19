@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace LanguageLearningApp.Core.Interfaces.Repository
 {
-    public interface IStudentReadRepository:IReadRepository<Student>
+    public interface IQuestionRepository:IRepository<Question>
     {
-        void UpdateStudentOrder(Student updatedOrder);
+        
     }
 }

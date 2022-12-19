@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace LanguageLearningApp.Core.Entities
 {
-    [PrimaryKey(nameof(Exam), nameof(QuestionNumber))]
-    public class ExamQuestions
+    [PrimaryKey(nameof(ExamId), nameof(QuestionNumber))]
+    public class ExamQuestions:IEntity
     {
-        public Exam Exam { get; set; }
+        public int ExamId { get; set; }
         public int QuestionNumber { get; set; }
         public Question Question { get; set; }
-        public string StudentAnswer { get; set; }
+        public string? StudentAnswer { get; set; }
     }
 }

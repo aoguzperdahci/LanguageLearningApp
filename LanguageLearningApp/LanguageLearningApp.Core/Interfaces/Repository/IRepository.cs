@@ -1,16 +1,12 @@
 ﻿using LanguageLearningApp.Core.Entities;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace LanguageLearningApp.Core.Interfaces.Repository
 {
-    public interface IRepository<T> where T : class
+    public interface IRepository<T> where T : class,IEntity, new()  
     {
-        DbSet<T> Table { get; }
+        List<T>GetAll(Expression<Func<T, bool>> filter = null);
+         T Get(Expression<Func<T, bool>> filter);
 
 
     }

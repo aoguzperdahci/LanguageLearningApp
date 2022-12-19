@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 
 namespace LanguageLearningApp.Core.Interfaces.Services
 {
-    public interface IStudentService
+    public interface IExamQuestionService
     {
-        IDataResult<Lesson> currentLesson();
-        public IResult getStudentId(int StudentId);
-
+        public IDataResult<Question> GetNextQuestion(int studentId);
+        public IResult GetAnswer(int examId,string answer);
+        public IResult CalculateExamResult(int studentId);
+        public int GetExamResult(int studentId);
         
     }
 }

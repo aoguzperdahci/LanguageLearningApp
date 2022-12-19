@@ -16,6 +16,51 @@ namespace LanguageLearningApp.Infrastructure.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.1");
 
+            modelBuilder.Entity("LanguageLearningApp.Core.Entities.Exam", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ExamResult")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("LessonId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LessonId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("Exams");
+                });
+
+            modelBuilder.Entity("LanguageLearningApp.Core.Entities.ExamQuestions", b =>
+                {
+                    b.Property<int>("ExamId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("QuestionNumber")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("QuestionId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("StudentAnswer")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ExamId", "QuestionNumber");
+
+                    b.HasIndex("QuestionId");
+
+                    b.ToTable("ExamQuestions");
+                });
+
             modelBuilder.Entity("LanguageLearningApp.Core.Entities.Lesson", b =>
                 {
                     b.Property<int>("Id")
@@ -172,6 +217,36 @@ namespace LanguageLearningApp.Infrastructure.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasDiscriminator().HasValue("TestQuestion");
+                });
+
+            modelBuilder.Entity("LanguageLearningApp.Core.Entities.Exam", b =>
+                {
+                    b.HasOne("LanguageLearningApp.Core.Entities.Lesson", "Lesson")
+                        .WithMany()
+                        .HasForeignKey("LessonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LanguageLearningApp.Core.Entities.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Lesson");
+
+                    b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("LanguageLearningApp.Core.Entities.ExamQuestions", b =>
+                {
+                    b.HasOne("LanguageLearningApp.Core.Entities.Question", "Question")
+                        .WithMany()
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Question");
                 });
 
             modelBuilder.Entity("LanguageLearningApp.Core.Entities.Lesson", b =>

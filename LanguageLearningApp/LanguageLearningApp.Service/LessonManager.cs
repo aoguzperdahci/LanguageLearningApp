@@ -1,26 +1,36 @@
-﻿using LanguageLearningApp.Core.Entities;
+﻿using LanguageLearningApp.Core.DTOs;
+using LanguageLearningApp.Core.Entities;
 using LanguageLearningApp.Core.Interfaces.Repository;
 using LanguageLearningApp.Core.Interfaces.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using LanguageLearningApp.Core.Utilities.Results;
 
 namespace LanguageLearningApp.Service
 {
     public class LessonManager : ILessonService
     {
-        private readonly ILessonReadRepository _lessonService;
+        private readonly ILessonRepository _lessonService;
+        private readonly IStudentRepository _studentService;
 
-        public LessonManager(ILessonReadRepository lessonService)
+
+        public LessonManager(ILessonRepository lessonService,IStudentRepository studentService)
         {
             _lessonService = lessonService;
+            _studentService = studentService;
         }
 
-        public List<Lesson> allLessons()
+        public IDataResult<LessonDetailDto> GetCurrentLessonDetails(int studentId)
         {
-            return _lessonService.GetAll();
+            return new DataResult<LessonDetailDto>(_lessonService.GetCurrentLessonDetails(studentId),true);
+        }
+
+        public IDataResult<Lesson> GetSingleLesson(int studentId)
+        {
+            return new DataResult<Lesson>(_studentService.Get(s=>s.Id==studentId).Lesson,true);
+        }
+
+        public IDataResult<List<LessonDetailDto>> LessonDetails()
+        {
+            return new DataResult<List<LessonDetailDto>>(_lessonService.GetDetails(),true);
         }
     }
 }

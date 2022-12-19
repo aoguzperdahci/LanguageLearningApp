@@ -5,12 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LanguageLearningApp.Infrastructure.Repositories
 {
-    public class QuestionReadRepository : ReadRepository<Question>, IQuestionReadRepository
+    public class QuestionRepository : ReadRepository<Question,LanguageLearningContext>, IQuestionRepository
     {
-        public QuestionReadRepository(LanguageLearningContext context) : base(context)
-        {
-        }
-
-       
     }
 }

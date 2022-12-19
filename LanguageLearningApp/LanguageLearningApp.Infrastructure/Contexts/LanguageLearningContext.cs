@@ -11,13 +11,7 @@ namespace LanguageLearningApp.Infrastructure.Contexts
 {
     public class LanguageLearningContext : DbContext
     {
-        //protected readonly IConfiguration _configuration;
-
-        //public LanguageLearningContext(IConfiguration configuration) 
-        //{
-        //    _configuration = configuration;
-
-        //}
+       
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             options.UseSqlite("Data Source =LanguageLearningDB.db");
@@ -26,6 +20,8 @@ namespace LanguageLearningApp.Infrastructure.Contexts
         public DbSet<Student> Students { get; set; }
         public DbSet<Lesson> Lessons{ get; set; }
         public DbSet<Question> Questions { get; set; }
+        public DbSet<Exam> Exams { get; set; }
+        public DbSet<ExamQuestions> ExamQuestions { get; set; }
         public DbSet<GapFillingQuestion> GapFillingQuestions { get; set; }
 
         public DbSet<MultimediaContent> MultimediaContents{ get; set; }

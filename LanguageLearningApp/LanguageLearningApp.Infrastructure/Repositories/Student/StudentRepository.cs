@@ -10,11 +10,22 @@ using System.Threading.Tasks;
 
 namespace LanguageLearningApp.Infrastructure.Repositories
 {
-    public class StudentReadRepository : ReadRepository<Student>, IStudentReadRepository
+    public class StudentRepository : ReadRepository<Student,LanguageLearningContext>, IStudentRepository
    {
-        public StudentReadRepository(LanguageLearningContext context) : base(context)
+
+        public bool isStudent(int studentId)
         {
+            using (var context = new LanguageLearningContext())
+            {
+                var student = context.Students.SingleOrDefault(s => s.Id == studentId);
+                if (student == null)
+                {
+                    return false;
+                }
+                return true;
+            }
         }
+
         public void UpdateStudentOrder(Student student)
         {
             using (var context = new LanguageLearningContext())

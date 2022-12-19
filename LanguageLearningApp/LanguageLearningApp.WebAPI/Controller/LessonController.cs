@@ -3,7 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LanguageLearningApp.WebAPI.Controllers
 {
-    public class LessonController : Controller
+
+    [Route("api/[controller]")]
+    [ApiController]
+    public class LessonController : ControllerBase
     {
         private ILessonService _lessonService;
 
@@ -13,10 +16,23 @@ namespace LanguageLearningApp.WebAPI.Controllers
             _lessonService = lessonService;
         }
 
-        [HttpGet]
-        public IActionResult GetAllLessons()
+        [HttpGet("getall")]
+        public IActionResult LessonDetail()
         {
-            return Ok(_lessonService.allLessons());    
+            return Ok(_lessonService.LessonDetails());    
+        }
+
+        [HttpGet("getsinglelesson")]
+        public IActionResult GetSingleLesson(int studentId)
+        {
+            return Ok(_lessonService.GetSingleLesson(studentId));
+        }
+
+        [HttpGet("getcurrentlesson")]
+        public IActionResult GetCurrentLesson(int studentId)
+        {
+            return Ok(_lessonService.GetCurrentLessonDetails(studentId));   
+
         }
     }
 }

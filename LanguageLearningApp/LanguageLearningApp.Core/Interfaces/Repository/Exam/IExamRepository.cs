@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace LanguageLearningApp.Core.Interfaces.Repository
 {
-    public interface ILessonReadRepository:IReadRepository<Lesson>
+    public interface IExamRepository:IRepository<Exam>
     {
+        public void CreateExam(Student student, Lesson lesson);
+        public Exam GetTheLastExam(int studentId);
+
     }
 }
