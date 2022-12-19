@@ -18,29 +18,41 @@ namespace LanguageLearningApp.WebAPI.Controller
         [HttpGet("getnextquestion")]
         public IActionResult NextQuestion(int studentId)
         {
-            _examQuestionService.GetNextQuestion(studentId);
-            return Ok();
+           var result = _examQuestionService.GetNextQuestion(studentId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
         
         [HttpGet]
         public IActionResult GetStudentAnswer([FromQuery]int studentId,[FromQuery] string answer)
         {
-            _examQuestionService.GetAnswer(studentId, answer);
-            return Ok();    
+            var result = _examQuestionService.GetAnswer(studentId, answer);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest();    
         }
 
         [HttpGet("calculatepoints")]
         public IActionResult CalculatePoints(int studentId)
         {
-            _examQuestionService.CalculateExamResult(studentId);
-            return Ok();
+            var result = _examQuestionService.CalculateExamResult(studentId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
         }
 
         [HttpGet("getexamresult")]
         public IActionResult GetExamResult(int studentId)
         {
-            _examQuestionService.GetExamResult(studentId);
-            return Ok();
+            var result =_examQuestionService.GetExamResult(studentId);
+            return Ok(result);
         }
     }
 }

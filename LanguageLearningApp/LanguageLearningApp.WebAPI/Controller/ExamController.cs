@@ -15,12 +15,26 @@ namespace LanguageLearningApp.WebAPI.Controller
             _examService = examService; 
         }
 
+        [HttpGet("createexam")]
+        public IActionResult CreateExam(int studentId)
+        {
+            var result =_examService.CreateExam(studentId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
         [HttpGet("prepareexam")]
         public IActionResult PrepareExam(int studentId)
         {
-            _examService.CreateExam(studentId);
-            _examService.PrepareExamQuestions(studentId);   
-            return Ok();
+            var result = _examService.PrepareExamQuestions(studentId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
     }
 }

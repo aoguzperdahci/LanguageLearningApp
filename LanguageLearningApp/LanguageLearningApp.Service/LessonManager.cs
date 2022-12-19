@@ -1,4 +1,5 @@
-﻿using LanguageLearningApp.Core.DTOs;
+﻿using LanguageLearningApp.Core.Constants;
+using LanguageLearningApp.Core.DTOs;
 using LanguageLearningApp.Core.Entities;
 using LanguageLearningApp.Core.Interfaces.Repository;
 using LanguageLearningApp.Core.Interfaces.Services;
@@ -20,17 +21,17 @@ namespace LanguageLearningApp.Service
 
         public IDataResult<LessonDetailDto> GetCurrentLessonDetails(int studentId)
         {
-            return new DataResult<LessonDetailDto>(_lessonService.GetCurrentLessonDetails(studentId),true);
+            return new SuccesDataResult<LessonDetailDto>(_lessonService.GetCurrentLessonDetails(studentId));
         }
 
         public IDataResult<Lesson> GetSingleLesson(int studentId)
         {
-            return new DataResult<Lesson>(_studentService.Get(s=>s.Id==studentId).Lesson,true);
+            return new SuccesDataResult<Lesson>(_studentService.Get(s=>s.Id==studentId).Lesson);
         }
 
         public IDataResult<List<LessonDetailDto>> LessonDetails()
         {
-            return new DataResult<List<LessonDetailDto>>(_lessonService.GetDetails(),true);
+            return new SuccesDataResult<List<LessonDetailDto>>(_lessonService.GetDetails());
         }
     }
 }

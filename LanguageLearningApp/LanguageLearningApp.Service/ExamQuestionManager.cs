@@ -27,10 +27,12 @@ namespace LanguageLearningApp.Service
 
         public IDataResult<Question> GetNextQuestion(int studentId)
         {
-
-            var examId = _examRepository.GetTheLastExam(studentId).Id;
-            return new DataResult<Question>(_examQuestionsRepository.NextQuestion(examId),true, Messages.QuestionServed);
-
+            if (_studentRepository.isStudent(studentId))
+            {
+                var examId = _examRepository.GetTheLastExam(studentId).Id;
+                return new SuccesDataResult<Question>(_examQuestionsRepository.NextQuestion(examId), Messages.QuestionServed);
+            }
+            return new ErrorDataResult<Question>(Messages.StudentMissing);  
         }
 
         public IResult GetAnswer(int studentId, string answer)
@@ -70,7 +72,6 @@ namespace LanguageLearningApp.Service
                 }
             }
             return examResult;
-
         }
     }
 }
