@@ -24,9 +24,9 @@ namespace LanguageLearningApp.Service
             return new SuccesDataResult<LessonDetailDto>(_lessonService.GetCurrentLessonDetails(studentId));
         }
 
-        public IDataResult<Lesson> GetSingleLesson(int studentId)
+        public IDataResult<Lesson> GetSingleLesson(int lessonid)
         {
-            return new SuccesDataResult<Lesson>(_studentService.Get(s=>s.Id==studentId).Lesson);
+            return new SuccesDataResult<Lesson>(_lessonService.Get(l=>l.Id==lessonid));
         }
 
         public IDataResult<List<LessonDetailDto>> LessonDetails()

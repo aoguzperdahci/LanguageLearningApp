@@ -23,9 +23,9 @@ namespace LanguageLearningApp.WebAPI.Controllers
         }
 
         [HttpGet("getsinglelesson")]
-        public IActionResult GetSingleLesson(int studentId)
+        public IActionResult GetSingleLesson(int lessonid)
         {
-            return Ok(_lessonService.GetSingleLesson(studentId));
+            return Ok(_lessonService.GetSingleLesson(lessonid));
         }
 
         [HttpGet("getcurrentlesson")]
