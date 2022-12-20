@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 namespace LanguageLearningApp.Infrastructure.Contexts
 {
     public class LanguageLearningContext : DbContext
-    {
-       
+    {       
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlite("Data Source =LanguageLearningDB.db");
+            var path = System.Environment.CurrentDirectory.Replace("WebAPI", "Infrastructure");
+            options.UseSqlite($"Data Source ={path}\\LanguageLearningDB.db");
         }
 
         public DbSet<Student> Students { get; set; }
