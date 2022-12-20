@@ -18,23 +18,19 @@ namespace LanguageLearningApp.WebAPI.Controller
         [HttpGet("createexam")]
         public IActionResult CreateExam(int studentId)
         {
-            var result =_examService.CreateExam(studentId);
-            if (result.Success)
+            var resultCreated =_examService.CreateExam(studentId);
+            if (resultCreated.Success)
             {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
+                var resultPrepared = _examService.PrepareExamQuestions(studentId);
 
-        [HttpGet("prepareexam")]
-        public IActionResult PrepareExam(int studentId)
-        {
-            var result = _examService.PrepareExamQuestions(studentId);
-            if (result.Success)
-            {
-                return Ok(result);
+                if (resultPrepared.Success)
+                {
+                    return Ok(resultPrepared);
+                }
+                return BadRequest(resultPrepared);
+
             }
-            return BadRequest(result);
+            return BadRequest(resultCreated);
         }
     }
 }

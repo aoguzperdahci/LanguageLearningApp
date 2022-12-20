@@ -19,7 +19,9 @@ namespace LanguageLearningApp.Service
         private readonly IQuestionRepository _questionService;
         private readonly IExamRepository _examService;
         private readonly IExamQuestionsRepository _examQuestionsRepository;
-        const int totalNumberOfQuestion = 10;
+        const int easyNumberOfQuestion = 4;
+        const int mediumNumberOfQuestion = 3;
+        const int hardNumberOfQuestion = 3;
 
 
         public ExamManager(IStudentRepository studentService, ILessonRepository lessonReadRepository, IQuestionRepository questionService, IExamRepository examService, IExamQuestionsRepository examQuestionsRepository)
@@ -48,14 +50,35 @@ namespace LanguageLearningApp.Service
         {
             if (_studentService.isStudent(studentId))
             {
-                var toCreated = _examService.GetTheLastExam(studentId);
-                var studentLevelQuestions = _questionService.GetAll(q => q.Lesson.Id == toCreated.Lesson.Id);
+                var exam = _examService.GetTheLastExam(studentId);
+                var lessonQuestions = _questionService.GetAll(q => q.Lesson.Id == exam.Lesson.Id);
+                var easyQuestions = lessonQuestions.FindAll(q => q.Difficulty == QuestionDifficulty.Easy);
+                var mediumQuestions = lessonQuestions.FindAll(q => q.Difficulty == QuestionDifficulty.Medium);
+                var hardQuestions = lessonQuestions.FindAll(q => q.Difficulty == QuestionDifficulty.Hard);
+                
                 Random random = new Random();
-                for (int i = 0; i < totalNumberOfQuestion; i++)
+                for (int i = 1; i <= easyNumberOfQuestion; i++)
                 {
-                    int rInt = random.Next(0, studentLevelQuestions.Count);
-                    _examQuestionsRepository.SaveExamQuestion(toCreated.Id, i++, studentLevelQuestions[rInt]);
+                    int index = random.Next(0, easyQuestions.Count);
+                    var question = lessonQuestions.ElementAt(index);
+                    lessonQuestions.Remove(question);
+                    _examQuestionsRepository.SaveExamQuestion(exam.Id, i, question);
+                }
 
+                for (int i = 1; i <= mediumNumberOfQuestion; i++)
+                {
+                    int index = random.Next(0, mediumQuestions.Count);
+                    var question = lessonQuestions.ElementAt(index);
+                    lessonQuestions.Remove(question);
+                    _examQuestionsRepository.SaveExamQuestion(exam.Id, i, question);
+                }
+
+                for (int i = 1; i <= hardNumberOfQuestion; i++)
+                {
+                    int index = random.Next(0, hardQuestions.Count);
+                    var question = lessonQuestions.ElementAt(index);
+                    lessonQuestions.Remove(question);
+                    _examQuestionsRepository.SaveExamQuestion(exam.Id, i, question);
                 }
                 return new SuccessResult(Messages.ExamQuestionCreated);
 

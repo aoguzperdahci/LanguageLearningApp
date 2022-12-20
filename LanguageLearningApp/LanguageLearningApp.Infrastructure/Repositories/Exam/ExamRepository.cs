@@ -38,7 +38,7 @@ namespace LanguageLearningApp.Infrastructure.Repositories
             using(var context = new LanguageLearningContext())
             {
                 
-                return (context.Exams.LastOrDefault(s=>s.Student.Id==studentId));   
+                return (context.Exams.OrderBy(e => e.Id).LastOrDefault(s=>s.Student.Id==studentId));
             } 
         }
     }
