@@ -9,7 +9,7 @@ namespace LanguageLearningApp.Core.Interfaces.Repository
 {
     public interface IStudentRepository:IRepository<Student>
     {
-        void UpdateStudentOrder(Student updatedOrder);
+        void UpdateStudentLesson(int studentId);
 
         public bool isStudent(int studentId);
 

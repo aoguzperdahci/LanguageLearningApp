@@ -41,5 +41,16 @@ namespace LanguageLearningApp.Infrastructure.Repositories
                 return (context.Exams.OrderBy(e => e.Id).LastOrDefault(s=>s.Student.Id==studentId));
             } 
         }
+
+        public void SaveExamResult(int examId, int examResult)
+        {
+            using (var context = new LanguageLearningContext())
+            {
+                var exam = context.Exams.Where(e => e.Id == examId).Single();
+                exam.ExamResult = examResult;
+                context.SaveChanges();
+            }
+        }
+
     }
 }

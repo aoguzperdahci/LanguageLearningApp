@@ -12,7 +12,6 @@ namespace LanguageLearningApp.Core.Interfaces.Repository
         public void SaveExamQuestion(int ExamId, int QuestionNumber ,Question question);
         public Question NextQuestion(int examQuestionId);
         public void SaveAnswer(int examQuestionId, string answer);
-        public void SaveExamResult(int examId);
 
     }
 }

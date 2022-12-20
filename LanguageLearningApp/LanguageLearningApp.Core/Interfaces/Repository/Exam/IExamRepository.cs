@@ -11,6 +11,8 @@ namespace LanguageLearningApp.Core.Interfaces.Repository
     {
         public void CreateExam(Student student, Lesson lesson);
         public Exam GetTheLastExam(int studentId);
+        public void SaveExamResult(int examId, int examResult);
+
 
     }
 }

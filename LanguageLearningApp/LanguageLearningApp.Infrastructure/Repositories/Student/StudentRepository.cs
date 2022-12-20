@@ -26,13 +26,19 @@ namespace LanguageLearningApp.Infrastructure.Repositories
             }
         }
 
-        public void UpdateStudentOrder(Student student)
+        public void UpdateStudentLesson(int studentId)
         {
             using (var context = new LanguageLearningContext())
             {
-                var updatedEntity = context.Entry(student);
-                updatedEntity.State = EntityState.Modified;
-                context.SaveChanges();
+                var student = context.Students.SingleOrDefault(s => s.Id == studentId);
+                var maxLessonOrder = context.Lessons.OrderBy(l => l.Order).Last().Order;
+
+                if (maxLessonOrder > student.Lesson.Order)
+                {
+                    var nextLesson = context.Lessons.SingleOrDefault(l => l.Order == student.Lesson.Order + 1);
+                    student.Lesson = nextLesson;
+                    context.SaveChanges();
+                }
             }
         }
     }

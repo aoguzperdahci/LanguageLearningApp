@@ -33,8 +33,7 @@ namespace LanguageLearningApp.Infrastructure.Repositories
         {
             using(var context = new LanguageLearningContext())
             {
-                return (context.ExamQuestions.Where(x => x.ExamId == examQuestionId).Where(s => s.StudentAnswer.Equals("")).First().Question);
-   
+                return (context.ExamQuestions.Where(x => x.ExamId == examQuestionId).OrderBy(q => q.QuestionNumber).Where(s => s.StudentAnswer.Equals("")).First().Question);
             }
 
         }
@@ -44,39 +43,11 @@ namespace LanguageLearningApp.Infrastructure.Repositories
             
             using(var context = new LanguageLearningContext())
             {
-                
-                var examQuestion = new ExamQuestions()
-                {
-                    ExamId = examQuestionId,
-                    QuestionNumber = context.ExamQuestions.Where(x => x.ExamId == examQuestionId).Where(y => y.StudentAnswer.Equals("")).First().QuestionNumber,
-                    StudentAnswer= answer
-                };
-
-                context.ExamQuestions.Attach(examQuestion);
-                context.Entry(examQuestion).Property(x => x.StudentAnswer).IsModified = true;
+                var examQuestion = context.ExamQuestions.Where(x => x.ExamId == examQuestionId).OrderBy(q => q.QuestionNumber).Where(y => y.StudentAnswer.Equals("")).First();
+                examQuestion.StudentAnswer = answer;
                 context.SaveChanges();
             }
         }
-
-        public void SaveExamResult(int examId)
-        {
-            using(var context = new LanguageLearningContext())
-            {
-                var correctAnswers = context.ExamQuestions.Where(x => x.ExamId == examId).Where(q => q.Question.CorrectAnswer.ToLower().Equals(q.StudentAnswer.ToLower()));
-                var examResult = correctAnswers.Count()*10;
-
-                var exam= new Exam()
-                {
-                    Id = examId,
-                    ExamResult = examResult
-                };
-                context.Exams.Attach(exam);
-                context.Entry(exam).Property(x => x.ExamResult).IsModified = true;
-                context.SaveChanges();
-            }
-            
-        }
-
        
     }
 }

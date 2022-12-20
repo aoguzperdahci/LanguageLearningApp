@@ -12,8 +12,7 @@ namespace LanguageLearningApp.Core.Interfaces.Services
     {
         public IDataResult<Question> GetNextQuestion(int studentId);
         public IResult GetAnswer(int examId,string answer);
-        public IResult CalculateExamResult(int studentId);
-        public int GetExamResult(int studentId);
+        public List<ExamQuestionResult> GetExamResult(int studentId);
         
     }
 }

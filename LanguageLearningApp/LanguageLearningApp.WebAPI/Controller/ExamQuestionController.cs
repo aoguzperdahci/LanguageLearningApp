@@ -15,7 +15,7 @@ namespace LanguageLearningApp.WebAPI.Controller
             _examQuestionService = examQuestionService;
         }
 
-        [HttpGet("getnextquestion")]
+        [HttpGet("getNextQuestion")]
         public IActionResult NextQuestion(int studentId)
         {
            var result = _examQuestionService.GetNextQuestion(studentId);
@@ -26,8 +26,8 @@ namespace LanguageLearningApp.WebAPI.Controller
             return BadRequest(result);
         }
         
-        [HttpGet]
-        public IActionResult GetStudentAnswer([FromQuery]int studentId,[FromQuery] string answer)
+        [HttpPost("saveStudentAnswer")]
+        public IActionResult SaveStudentAnswer(int studentId, string answer)
         {
             var result = _examQuestionService.GetAnswer(studentId, answer);
             if (result.Success)
@@ -37,18 +37,7 @@ namespace LanguageLearningApp.WebAPI.Controller
             return BadRequest();    
         }
 
-        [HttpGet("calculatepoints")]
-        public IActionResult CalculatePoints(int studentId)
-        {
-            var result = _examQuestionService.CalculateExamResult(studentId);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest();
-        }
-
-        [HttpGet("getexamresult")]
+        [HttpGet("getExamResult")]
         public IActionResult GetExamResult(int studentId)
         {
             var result =_examQuestionService.GetExamResult(studentId);

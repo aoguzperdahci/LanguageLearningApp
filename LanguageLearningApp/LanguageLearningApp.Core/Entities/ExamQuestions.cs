@@ -14,6 +14,6 @@ namespace LanguageLearningApp.Core.Entities
         public int ExamId { get; set; }
         public int QuestionNumber { get; set; }
         public Question Question { get; set; }
-        public string? StudentAnswer { get; set; }
+        public string StudentAnswer { get; set; }
     }
 }

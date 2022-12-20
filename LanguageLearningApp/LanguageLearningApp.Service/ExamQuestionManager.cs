@@ -3,6 +3,7 @@ using LanguageLearningApp.Core.Entities;
 using LanguageLearningApp.Core.Interfaces.Repository;
 using LanguageLearningApp.Core.Interfaces.Services;
 using LanguageLearningApp.Core.Utilities.Results;
+using LanguageLearningApp.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace LanguageLearningApp.Service
         private IExamRepository _examRepository; 
         private ILessonRepository _lessonRepository;
         private IStudentRepository _studentRepository;
+        private int PASSING_SCORE = 70; 
         public ExamQuestionManager(IExamQuestionsRepository examQuestionsRepository, IExamRepository examRepository, ILessonRepository lessonRepository, IStudentRepository studentRepository)
         {
             _examQuestionsRepository = examQuestionsRepository;
@@ -45,33 +47,35 @@ namespace LanguageLearningApp.Service
             }
             return new ErrorResult(Messages.StudentMissing + Messages.AnswerIsNotSaved);
         }
-            
 
-        public IResult CalculateExamResult(int studentId)
-        {
-            if (_studentRepository.isStudent(studentId))
-            {
-                var examId = _examRepository.GetTheLastExam(studentId).Id;
-                _examQuestionsRepository.SaveExamResult(examId);
-                return new SuccessResult(Messages.ExamResultCalculated);
-            }
-            return new ErrorResult(Messages.StudentMissing + Messages.ExamIsNotCalculated);
-        }
-
-        public int GetExamResult(int studentId)
+        public List<ExamQuestionResult> GetExamResult(int studentId)
         {
             var examId = _examRepository.GetTheLastExam(studentId).Id;
-            var examResult = _examRepository.Get(x => x.Id == examId).ExamResult;
-            if (examResult >= 70)
+            var examQuestions = _examQuestionsRepository.GetAll(e => e.ExamId == examId);
+            List<ExamQuestionResult> results = new List<ExamQuestionResult>();
+            int correctAnswerCount = 0;
+
+            foreach(var question in examQuestions)
             {
-                var maxOrder = _lessonRepository.GetAll().Count - 1;
-                var studentOrder =_studentRepository.Get(s => s.Id == studentId).Lesson.Order;
-                if (maxOrder> studentOrder)
+                var correct = question.Question.CorrectAnswer.ToLower() == question.StudentAnswer.ToLower();
+
+                if (correct)
                 {
-                    _studentRepository.UpdateStudentOrder(_studentRepository.Get(s => s.Id == studentId));
+                    correctAnswerCount++;
                 }
+
+                results.Add(new ExamQuestionResult { Correct = correct, Difficulty = question.Question.Difficulty});
             }
-            return examResult;
+
+            var examResult = correctAnswerCount / examQuestions.Count() * 100;
+            _examRepository.SaveExamResult(examId, examResult);
+
+            if (examResult >= PASSING_SCORE)
+            {
+                _studentRepository.UpdateStudentLesson(studentId);
+            }
+
+            return results;
         }
     }
 }
