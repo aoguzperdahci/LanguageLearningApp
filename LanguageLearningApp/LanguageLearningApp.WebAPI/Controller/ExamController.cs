@@ -15,7 +15,7 @@ namespace LanguageLearningApp.WebAPI.Controller
             _examService = examService; 
         }
 
-        [HttpGet("createexam")]
+        [HttpPost("createExam")]
         public IActionResult CreateExam(int studentId)
         {
             var resultCreated =_examService.CreateExam(studentId);

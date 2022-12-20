@@ -1,5 +1,4 @@
-﻿using LanguageLearningApp.Core.DTOs;
-using LanguageLearningApp.Core.Entities;
+﻿using LanguageLearningApp.Core.Entities;
 using LanguageLearningApp.Core.Utilities.Results;
 using System;
 using System.Collections.Generic;
@@ -11,8 +10,8 @@ namespace LanguageLearningApp.Core.Interfaces.Services
 {
     public interface ILessonService
     {
-        IDataResult<List<LessonDetailDto>>LessonDetails();
+        IDataResult<List<LessonShortInfo>>LessonDetails();
         IDataResult<Lesson> GetSingleLesson(int studentId);
-        IDataResult<LessonDetailDto> GetCurrentLessonDetails(int studentId);
+        IDataResult<LessonShortInfo> GetCurrentLessonDetails(int studentId);
     }
 }

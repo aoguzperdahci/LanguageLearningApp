@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LanguageLearningApp.Core.DTOs
+namespace LanguageLearningApp.Core.Entities
 {
-    public class LessonDetailDto:IDTO
+    public class LessonShortInfo
     {
         public int Id { get; set; }
         public string Name { get; set; }

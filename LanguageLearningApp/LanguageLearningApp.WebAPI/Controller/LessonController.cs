@@ -16,19 +16,19 @@ namespace LanguageLearningApp.WebAPI.Controllers
             _lessonService = lessonService;
         }
 
-        [HttpGet("getall")]
+        [HttpGet("getAllLessons")]
         public IActionResult LessonDetail()
         {
             return Ok(_lessonService.LessonDetails());    
         }
 
-        [HttpGet("getsinglelesson")]
+        [HttpGet("getSingleLesson")]
         public IActionResult GetSingleLesson(int lessonid)
         {
             return Ok(_lessonService.GetSingleLesson(lessonid));
         }
 
-        [HttpGet("getcurrentlesson")]
+        [HttpGet("getCurrentLesson")]
         public IActionResult GetCurrentLesson(int studentId)
         {
             return Ok(_lessonService.GetCurrentLessonDetails(studentId));   

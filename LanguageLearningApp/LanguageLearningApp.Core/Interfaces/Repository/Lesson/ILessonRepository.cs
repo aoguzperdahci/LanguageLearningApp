@@ -1,5 +1,4 @@
-﻿using LanguageLearningApp.Core.DTOs;
-using LanguageLearningApp.Core.Entities;
+﻿using LanguageLearningApp.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +9,7 @@ namespace LanguageLearningApp.Core.Interfaces.Repository
 {
     public interface ILessonRepository:IRepository<Lesson>
     {
-        List<LessonDetailDto> GetDetails();
-        LessonDetailDto GetCurrentLessonDetails(int studentId);
+        List<LessonShortInfo> GetDetails();
+        LessonShortInfo GetCurrentLessonDetails(int studentId);
     }
 }
