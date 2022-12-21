@@ -98,7 +98,7 @@ const NavbarComponent = () => {
     }
 
     return (
-        <Navbar collapseOnSelect expand="lg" fixed="top">
+        <Navbar collapseOnSelect expand="lg" sticky="top">
             <Container>
                 <NavLink to="/">
                     <Navbar.Brand className="me-5">LLA</Navbar.Brand>
