@@ -17,13 +17,13 @@ const NavbarComponent = () => {
             case "student":
                 navigation = (
                     <>
-                        <NavLink>
+                        <NavLink to="/lessons">
                             <Button className="navbar-button-default me-1">Lessons</Button>
                         </NavLink>
-                        <NavLink>
+                        <NavLink to="/personal-tutor">
                             <Button className="navbar-button-default me-1">Personal Tutor</Button>
                         </NavLink>
-                        <NavLink>
+                        <NavLink to="/inbox">
                             <Button className="navbar-button-default me-1">Inbox</Button>
                         </NavLink>
                     </>);
@@ -31,10 +31,10 @@ const NavbarComponent = () => {
             case "teacher":
                 navigation = (
                     <>
-                        <NavLink>
+                        <NavLink to="tutoring">
                             <Button className="navbar-button-default me-1">Tutor a Student</Button>
                         </NavLink>
-                        <NavLink>
+                        <NavLink to="evaluate-exercise">
                             <Button className="navbar-button-default me-1">Evaluate Exercise</Button>
                         </NavLink>
                     </>);
@@ -42,7 +42,7 @@ const NavbarComponent = () => {
             case "admin":
                 navigation = (
                     <>
-                        <NavLink>
+                        <NavLink to="edit-lessons">
                             <Button className="navbar-button-default me-1">Edit Lessons</Button>
                         </NavLink>
                     </>);
@@ -63,13 +63,17 @@ const NavbarComponent = () => {
                 <>
                     <NavDropdown title={user.name} id="collasible-nav-dropdown">
                         <NavDropdown.Item className="default">
-                            <MdPersonOutline className="me-1 fs-5 icon"></MdPersonOutline>
-                            Account
+                            <NavLink to="account">
+                                <MdPersonOutline className="me-1 fs-5 icon"></MdPersonOutline>
+                                Account
+                            </NavLink>
                         </NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item className="red" onClick={() => handleLogout()}>
-                            <MdLogout className="me-1 fs-5 icon"></MdLogout>
-                            Log out
+                            <NavLink to="/">
+                                <MdLogout className="me-1 fs-5 icon"></MdLogout>
+                                Log out
+                            </NavLink>
                         </NavDropdown.Item>
                     </NavDropdown>
 
@@ -77,11 +81,11 @@ const NavbarComponent = () => {
         } else {
             loginState = (
                 <>
-                    <NavLink>
-                        <Button className="navbar-button-light me-2">Sign up</Button>
+                    <NavLink to="/signup">
+                        <Button className="navbar-button-light me-2 px-4">Sign up</Button>
                     </NavLink>
-                    <NavLink>
-                        <Button className="navbar-button-dark" onClick={() => handleLogin()}>Log in</Button>
+                    <NavLink to="login">
+                        <Button className="navbar-button-dark px-4">Log in</Button>
                     </NavLink>
                 </>);
         }
@@ -93,15 +97,12 @@ const NavbarComponent = () => {
         dispatch(setUser({ id: 0, name: null, role: null }));
     }
 
-    const handleLogin = () => {
-        dispatch(setUser({ id: 1, name: "ahmet", role: "student" }));
-    }
-
-
     return (
         <Navbar collapseOnSelect expand="lg" fixed="top">
             <Container>
-                <Navbar.Brand className="me-5">LLA</Navbar.Brand>
+                <NavLink to="/">
+                    <Navbar.Brand className="me-5">LLA</Navbar.Brand>
+                </NavLink>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-between">
                     <Nav>
