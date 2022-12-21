@@ -1,0 +1,34 @@
+.shadowSignUp{
+  
+    margin-left: 50px;
+    
+}
+
+#signup-button{
+    background-color: #3752b4;
+    color: black;
+    
+}
+
+.fw-bold{
+   
+    padding-top: 35px;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.info{
+    padding: 20px;
+}
+
+.mb-3{
+    text-align: left;
+   
+}
+.label{
+    padding-left: 5px;
+}
+
+.baseSignUp{
+    background-color: #D2F1FF;
+}
