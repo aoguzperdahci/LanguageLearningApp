@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import InboxPage from '../../pages/InboxPage/InboxPage';
-import PersonalTutorPage from '../../pages/InboxPage/PersonalTutorPage/PersonalTutorPage';
-import TutoringPage from '../../pages/InboxPage/TutoringPage/TutoringPage';
+import PersonalTutorPage from '../../pages/PersonalTutorPage/PersonalTutorPage';
+import TutoringPage from '../../pages/TutoringPage/TutoringPage';
 import NavbarComponent from '../NavbarComponent/NavbarComponent';
 import ToastComponent from '../ToastComponent/ToastComponent';
 import './App.css';
