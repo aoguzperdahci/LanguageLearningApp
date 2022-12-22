@@ -1,0 +1,27 @@
+.inbox-message-list {
+    background-color: #d2f1ff;
+}
+
+.inbox-message-card {
+    background-color: #00b1ff;
+    border: 1px solid #3752b4;
+}
+
+.inbox-message-detail {
+    background-color: #d2f1ff;
+    border-left: 2px solid #ffffff;
+}
+
+.inbox-message-title {
+    color: #3752b4;
+}
+
+.inbox-message-body {
+    color: #262626;
+    width: 80%;
+    margin-left: 10%;
+}
+
+.inbox-row {
+    height: 94vh;
+}
