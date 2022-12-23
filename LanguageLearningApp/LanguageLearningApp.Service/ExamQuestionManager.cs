@@ -12,14 +12,14 @@ using System.Threading.Tasks;
 
 namespace LanguageLearningApp.Service
 {
-    public class ExamQuestionManager<T>:IExamQuestionService<T>
+    public class ExamQuestionManager:IExamQuestionService
     {
-        private IExamQuestionsRepository<T> _examQuestionsRepository;
+        private IExamQuestionsRepository _examQuestionsRepository;
         private IExamRepository _examRepository; 
         private ILessonRepository _lessonRepository;
         private IStudentRepository _studentRepository;
         private int PASSING_SCORE = 70; 
-        public ExamQuestionManager(IExamQuestionsRepository<T> examQuestionsRepository, IExamRepository examRepository, ILessonRepository lessonRepository, IStudentRepository studentRepository)
+        public ExamQuestionManager(IExamQuestionsRepository examQuestionsRepository, IExamRepository examRepository, ILessonRepository lessonRepository, IStudentRepository studentRepository)
         {
             _examQuestionsRepository = examQuestionsRepository;
             _examRepository = examRepository;
@@ -27,15 +27,14 @@ namespace LanguageLearningApp.Service
             _studentRepository = studentRepository;
         }
 
-        public IDataResult<T> GetNextQuestion(int studentId)
+        public IDataResult<Question> GetNextQuestion(int studentId)
         {
-
             if (_studentRepository.isStudent(studentId))
             {
                 var examId = _examRepository.GetTheLastExam(studentId).Id;
-                return new SuccesDataResult<T>(_examQuestionsRepository.NextQuestion(examId), Messages.QuestionServed);
+                return new SuccesDataResult<Question>(_examQuestionsRepository.NextQuestion(examId), Messages.QuestionServed);
             }
-            return new ErrorDataResult<T>(Messages.StudentMissing);
+            return new ErrorDataResult<Question>(Messages.StudentMissing);
         }
 
         public IResult GetAnswer(int studentId, string answer)
@@ -75,8 +74,8 @@ namespace LanguageLearningApp.Service
             {
                 _studentRepository.UpdateStudentLesson(studentId);
             }
-
             return results;
         }
+ 
     }
 }

@@ -5,11 +5,11 @@ namespace LanguageLearningApp.WebAPI.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ExamQuestionController<T> : ControllerBase
+    public class ExamQuestionController : ControllerBase
     {
-        private IExamQuestionService<T> _examQuestionService;
+        private IExamQuestionService _examQuestionService;
 
-        public ExamQuestionController(IExamQuestionService<T> examQuestionService)
+        public ExamQuestionController(IExamQuestionService examQuestionService)
 
         {
             _examQuestionService = examQuestionService;

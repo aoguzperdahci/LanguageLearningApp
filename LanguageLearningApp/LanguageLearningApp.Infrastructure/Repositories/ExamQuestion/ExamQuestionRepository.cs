@@ -1,5 +1,6 @@
 ﻿using LanguageLearningApp.Core.Entities;
 using LanguageLearningApp.Core.Interfaces.Repository;
+using LanguageLearningApp.Core.Utilities.Results;
 using LanguageLearningApp.Infrastructure.Contexts;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
@@ -8,7 +9,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace LanguageLearningApp.Infrastructure.Repositories
 {
-    public class ExamQuestionRepository<T> : ReadRepository<ExamQuestions,LanguageLearningContext>, IExamQuestionsRepository<T>
+    public class ExamQuestionRepository : ReadRepository<ExamQuestions,LanguageLearningContext>, IExamQuestionsRepository
     {
    
         public void SaveExamQuestion(int ExamId, int QuestionNumber, Question question)
@@ -29,18 +30,11 @@ namespace LanguageLearningApp.Infrastructure.Repositories
 
         }
 
-        public T NextQuestion(int examQuestionId)
+        public Question NextQuestion(int examQuestionId)
         {
             using(var context = new LanguageLearningContext())
             {
-                var questionId = context.ExamQuestions.Where(x => x.ExamId == examQuestionId).OrderBy(q => q.QuestionNumber).Where(s => s.StudentAnswer.Equals("")).First().Question.Id;
-                if(context.TestQuestions.Where(x=>x.Id == questionId) !=null)
-                {
-                    var nextQuestion = context.TestQuestions.Where(x => x.Id == questionId);
-                    return (T)nextQuestion;
-
-                }
-                return (T)context.GapFillingQuestions.Where(x => x.Id == questionId);
+                return context.ExamQuestions.Where(x => x.ExamId == examQuestionId).OrderBy(q => q.QuestionNumber).Where(s => s.StudentAnswer.Equals("")).First().Question;
                
             }
 
@@ -56,6 +50,6 @@ namespace LanguageLearningApp.Infrastructure.Repositories
                 context.SaveChanges();
             }
         }
-       
+
     }
 }
