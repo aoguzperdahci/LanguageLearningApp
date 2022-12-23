@@ -11,7 +11,9 @@ namespace LanguageLearningApp.Core.Interfaces.Repository
     public interface IExamQuestionsRepository : IRepository<ExamQuestions>
     {
         public void SaveExamQuestion(int ExamId, int QuestionNumber ,Question question);
-        public Question NextQuestion(int examQuestionId);
+        public int NextQuestionId(int examQuestionId);
+        public TestQuestion GetTestQuestion(int questionId);
+        public GapFillingQuestion GetGapFillingQuestion(int questionId);
         public void SaveAnswer(int examQuestionId, string answer);
     }
 }
