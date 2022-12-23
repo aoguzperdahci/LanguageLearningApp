@@ -18,6 +18,7 @@ namespace LanguageLearningApp.Core.Constants
         public static string ExamCreated = "Exam is successfully created";
         public static string ExamQuestionCreated = "Exam question is created";
         public static string QuestionServed = "Next question served";
+        public static string LessonIsMissing = "Lesson could not be found";
 
     }
 }

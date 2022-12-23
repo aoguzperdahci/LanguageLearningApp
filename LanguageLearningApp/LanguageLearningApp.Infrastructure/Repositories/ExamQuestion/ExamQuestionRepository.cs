@@ -8,7 +8,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace LanguageLearningApp.Infrastructure.Repositories
 {
-    public class ExamQuestionRepository : ReadRepository<ExamQuestions,LanguageLearningContext>, IExamQuestionsRepository
+    public class ExamQuestionRepository<T> : ReadRepository<ExamQuestions,LanguageLearningContext>, IExamQuestionsRepository<T>
     {
    
         public void SaveExamQuestion(int ExamId, int QuestionNumber, Question question)
@@ -29,11 +29,19 @@ namespace LanguageLearningApp.Infrastructure.Repositories
 
         }
 
-        public Question NextQuestion(int examQuestionId)
+        public T NextQuestion(int examQuestionId)
         {
             using(var context = new LanguageLearningContext())
             {
-                return (context.ExamQuestions.Where(x => x.ExamId == examQuestionId).OrderBy(q => q.QuestionNumber).Where(s => s.StudentAnswer.Equals("")).First().Question);
+                var questionId = context.ExamQuestions.Where(x => x.ExamId == examQuestionId).OrderBy(q => q.QuestionNumber).Where(s => s.StudentAnswer.Equals("")).First().Question.Id;
+                if(context.TestQuestions.Where(x=>x.Id == questionId) !=null)
+                {
+                    var nextQuestion = context.TestQuestions.Where(x => x.Id == questionId);
+                    return (T)nextQuestion;
+
+                }
+                return (T)context.GapFillingQuestions.Where(x => x.Id == questionId);
+               
             }
 
         }

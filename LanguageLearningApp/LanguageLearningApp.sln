@@ -5,11 +5,11 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LanguageLearningApp.WebAPI", "LanguageLearningApp.WebAPI\LanguageLearningApp.WebAPI.csproj", "{FDA9AC84-528A-4A24-8559-88563199CEC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanguageLearningApp.Core", "LanguageLearningApp.Core\LanguageLearningApp.Core.csproj", "{94EE4EE7-29E5-4733-B3CD-3D0D39F69EA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LanguageLearningApp.Core", "LanguageLearningApp.Core\LanguageLearningApp.Core.csproj", "{94EE4EE7-29E5-4733-B3CD-3D0D39F69EA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanguageLearningApp.Infrastructure", "LanguageLearningApp.Infrastructure\LanguageLearningApp.Infrastructure.csproj", "{E80DC1A2-D190-4E46-8CDC-AC34F46CAC68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LanguageLearningApp.Infrastructure", "LanguageLearningApp.Infrastructure\LanguageLearningApp.Infrastructure.csproj", "{E80DC1A2-D190-4E46-8CDC-AC34F46CAC68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanguageLearningApp.Service", "LanguageLearningApp.Service\LanguageLearningApp.Service.csproj", "{CB299E6D-A9B6-4E93-A332-D475498BC8E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LanguageLearningApp.Service", "LanguageLearningApp.Service\LanguageLearningApp.Service.csproj", "{CB299E6D-A9B6-4E93-A332-D475498BC8E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

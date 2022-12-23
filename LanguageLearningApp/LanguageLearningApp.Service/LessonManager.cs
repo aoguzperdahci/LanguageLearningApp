@@ -20,12 +20,23 @@ namespace LanguageLearningApp.Service
 
         public IDataResult<LessonShortInfo> GetCurrentLessonDetails(int studentId)
         {
+            if (_studentService.Get(i => i.Id == studentId) == null)
+            {
+                return new ErrorDataResult<LessonShortInfo>(Messages.StudentMissing);
+
+            }
             return new SuccesDataResult<LessonShortInfo>(_lessonService.GetCurrentLessonDetails(studentId));
         }
 
         public IDataResult<Lesson> GetSingleLesson(int lessonid)
         {
-            return new SuccesDataResult<Lesson>(_lessonService.Get(l=>l.Id==lessonid));
+            var lesson = _lessonService.Get(l => l.Id == lessonid);
+            if (lesson is null)
+            {
+                return new ErrorDataResult<Lesson>(Messages.LessonIsMissing);
+
+            }
+            return new SuccesDataResult<Lesson>(lesson);
         }
 
         public IDataResult<List<LessonShortInfo>> LessonDetails()

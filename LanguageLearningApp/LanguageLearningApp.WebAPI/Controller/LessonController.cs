@@ -17,21 +17,36 @@ namespace LanguageLearningApp.WebAPI.Controllers
         }
 
         [HttpGet("getAllLessons")]
-        public IActionResult LessonDetail()
+        public async Task<IActionResult> LessonDetail()
         {
-            return Ok(_lessonService.LessonDetails());    
+            var result = _lessonService.LessonDetails();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
 
         [HttpGet("getSingleLesson")]
-        public IActionResult GetSingleLesson(int lessonid)
+        public async Task<IActionResult> GetSingleLesson(int lessonid)
         {
-            return Ok(_lessonService.GetSingleLesson(lessonid));
+            var result = _lessonService.GetSingleLesson(lessonid);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
 
         [HttpGet("getCurrentLesson")]
-        public IActionResult GetCurrentLesson(int studentId)
+        public async Task<IActionResult> GetCurrentLesson(int studentId)
         {
-            return Ok(_lessonService.GetCurrentLessonDetails(studentId));   
+            var result = _lessonService.GetCurrentLessonDetails(studentId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
 
         }
     }

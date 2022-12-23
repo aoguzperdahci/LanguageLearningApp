@@ -5,18 +5,18 @@ namespace LanguageLearningApp.WebAPI.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ExamQuestionController : ControllerBase
+    public class ExamQuestionController<T> : ControllerBase
     {
-        private IExamQuestionService _examQuestionService;
+        private IExamQuestionService<T> _examQuestionService;
 
-        public ExamQuestionController(IExamQuestionService examQuestionService)
+        public ExamQuestionController(IExamQuestionService<T> examQuestionService)
 
         {
             _examQuestionService = examQuestionService;
         }
 
         [HttpGet("getNextQuestion")]
-        public IActionResult NextQuestion(int studentId)
+        public async Task<IActionResult>NextQuestion(int studentId)
         {
            var result = _examQuestionService.GetNextQuestion(studentId);
             if (result.Success)
