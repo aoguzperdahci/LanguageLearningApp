@@ -1,42 +1,43 @@
 .navbar {
-    background-color: #D7C0AE;
+    background-color: #ffffff;
+    border-bottom: 1px solid rgba(38, 38, 38, .3);
 }
 
 .navbar-button-dark {
-    background-color: #967E76;
-    border-color: #967E76;
-    color: white;
+    background-color: #262626;
+    border-color: #262626;
+    color: #ffffff;
 }
 
 .navbar-button-dark:hover {
-    background-color: #EEE3CB;
-    border-color: #EEE3CB;
-    color: black;
+    background-color: #ffffff;
+    border-color: #262626;
+    color: #262626;
 }
 
 .navbar-button-light {
-    background-color: #EEE3CB;
-    border-color: #EEE3CB;
-    color: black;
+    background-color: #ffd753;
+    border-color: #ffd753;
+    color: #262626;
 }
 
 .navbar-button-light:hover {
-    background-color: #967E76;
-    border-color: #967E76;
-    color: white;
+    background-color: #ffffff;
+    border-color: #ffd753;
+    color: #262626;
 }
 
 
 .navbar-button-default {
-    background-color: #D7C0AE;
-    border-color: #D7C0AE;
+    background-color: #ffffff;
+    border-color: #ffffff;
     color: black;
 }
 
 .navbar-button-default:hover {
-    background-color: #EEE3CB;
-    border-color: #EEE3CB;
-    color: black;
+    background-color: #ffffff;
+    border-color: #ffffff;
+    color: #00b1ff;
 }
 
 .icon {
@@ -44,7 +45,7 @@
 }
 
 .dropdown-menu {
-    background-color: #EEE3CB;
+    background-color: #ffffff;
     padding: 0;
 }
 
@@ -58,11 +59,30 @@
 }
 
 .dropdown-item.default:hover {
-    background-color: #D7C0AE;
+    background-color: #00b1ff;
     padding-top: 8px;
     padding-bottom: 8px;
 }
 
 .dropdown-divider {
     margin: 1px;
+}
+
+.navbar-brand {
+    color: #262626;
+    font-size: 1.5rem;
+}
+
+.dropdown-toggle {
+    color: #262626;
+}
+
+a {
+    text-decoration: none;
+    color: #262626;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #262626;
 }

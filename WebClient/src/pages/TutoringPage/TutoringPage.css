@@ -1,0 +1,44 @@
+.tutoring-page {
+    background-color: #ffd753;
+    height: 94vh;
+}
+
+.tutoring-page-center {
+    height: 400px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.tutoring-webcam-box {
+    background-color: #262626;
+    height: 300px;
+    width: 500px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.tutoring-webcam-text {
+    color: #fff;
+    padding-top: 130px;
+}
+
+.tutoring-webcam-bottom-bar {
+    padding-top: 100px;
+    /* padding-left: 270px; */
+    color: #fff;
+}
+
+.tutoring-page-button {
+    background-color: #8643ae;
+    border-color: #8643ae;
+    border-width: 2px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.tutoring-page-button:hover {
+    background-color: #ffd753;
+    border-color: #8643ae;
+    border-width: 2px;
+    color: #262626;
+}
