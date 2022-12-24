@@ -1,10 +1,13 @@
 import React from 'react';
 import { Button, Col, Row } from 'react-bootstrap';
 import { BsFillCameraVideoOffFill, BsFillMicMuteFill, BsGearFill } from 'react-icons/bs';
+import NavbarComponent from '../../components/NavbarComponent/NavbarComponent';
 import "./PersonalTutorPage.css"
 
 const PersonalTutorPage = () => {
     return (
+        <>
+        <NavbarComponent></NavbarComponent>
         <div className="d-flex justify-content-center tutor-page">
             <div className="tutor-page-center">
                 <div className="webcam-box">
@@ -32,6 +35,7 @@ const PersonalTutorPage = () => {
                     <Button className="w-100 fs-5 tutor-page-button">Talk to Personal Tutor</Button>
             </div>
         </div>
+        </>
     )
 }
 

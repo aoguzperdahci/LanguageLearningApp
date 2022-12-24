@@ -1,0 +1,17 @@
+.exam-page {
+    background-color: #d2f1ff;
+    height: 100vh;
+}
+
+.create-exam-button {
+    margin-top: auto;
+    margin-bottom: auto;
+    background-color: #3752b4;
+    /* padding-left: 50px;
+    padding-right: 50px; */
+}
+
+.break {
+    flex-basis: 100%;
+    height: 0;
+}

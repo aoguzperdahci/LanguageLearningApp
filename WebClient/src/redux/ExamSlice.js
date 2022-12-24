@@ -3,20 +3,10 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 var initialState = {
     questionNumber: 0,
     question: {},
-    status: "empty"
+    status: "empty",
+    result: [],
 };
 
-// var initialState = {
-//     "questionNumber": 1,
-//     "question": {
-//         "id": 5,
-//         "questionText": "Lilly has been lying on the floor ...... three hours now.",
-//         "difficulty": 0,
-//         "correctAnswer": "",
-//         "lesson": null
-//     },
-//     "status": "served"
-// }
 var API = process.env.REACT_APP_API_KEY;
 
 export const createExam = createAsyncThunk('exam/createExam', async (studentId) => {
@@ -27,6 +17,19 @@ export const createExam = createAsyncThunk('exam/createExam', async (studentId) 
 
 export const getNextQuestion = createAsyncThunk('exam/getNextQuestion', async (studentId) => {
     const response = await fetch(API + "ExamQuestion/getNextQuestion?studentId=" + studentId);
+    const data = await response.json();
+    return data.data
+})
+
+export const saveAnswer = createAsyncThunk('exam/saveAnswer', async ({ studentId, answer }) => {
+    console.log("answer", answer)
+    const response = await fetch(API + "ExamQuestion/saveStudentAnswer?studentId=" + studentId + "&answer=" + answer, { method: "POST" });
+    const data = await response.json();
+    return data.success
+})
+
+export const getExamResult = createAsyncThunk('exam/getExamResult', async (studentId) => {
+    const response = await fetch(API + "ExamQuestion/getExamResult?studentId=" + studentId);
     const data = await response.json();
     return data.data
 })
@@ -56,8 +59,26 @@ const examSlice = createSlice({
                 state.questionNumber++;
                 state.status = "served";
             })
-
-
+            .addCase(saveAnswer.pending, (state, action) => {
+                state.status = "loading";
+            })
+            .addCase(saveAnswer.fulfilled, (state, action) => {
+                if (action.payload) {
+                    state.status = "saved";
+                }
+            })
+            .addCase(getExamResult.pending, (state, action) => {
+                state.status = "loading";
+            })
+            .addCase(getExamResult.fulfilled, (state, action) => {
+                action.payload.forEach(element => {
+                    state.result.push(element);
+                });
+                
+                state.question = {};
+                state.status = "empty";
+                state.questionNumber = 0;
+            })
     }
 })
 
