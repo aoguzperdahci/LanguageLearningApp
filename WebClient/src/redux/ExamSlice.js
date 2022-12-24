@@ -4,48 +4,7 @@ var initialState = {
     questionNumber: 0,
     question: {},
     status: "empty",
-    result: [
-            {
-                "correct": true,
-                "difficulty": 0
-            },
-            {
-                "correct": true,
-                "difficulty": 0
-            },
-            {
-                "correct": false,
-                "difficulty": 0
-            },
-            {
-                "correct": false,
-                "difficulty": 0
-            },
-            {
-                "correct": false,
-                "difficulty": 1
-            },
-            {
-                "correct": true,
-                "difficulty": 1
-            },
-            {
-                "correct": false,
-                "difficulty": 1
-            },
-            {
-                "correct": false,
-                "difficulty": 2
-            },
-            {
-                "correct": false,
-                "difficulty": 2
-            },
-            {
-                "correct": false,
-                "difficulty": 2
-            }
-    ],
+    result: [],
 };
 
 var API = process.env.REACT_APP_API_KEY;
@@ -90,6 +49,7 @@ const examSlice = createSlice({
             .addCase(createExam.fulfilled, (state, action) => {
                 if (action.payload) {
                     state.status = "created";
+                    state.result = [];
                 }
             })
             .addCase(getNextQuestion.pending, (state, action) => {
@@ -112,10 +72,7 @@ const examSlice = createSlice({
                 state.status = "loading";
             })
             .addCase(getExamResult.fulfilled, (state, action) => {
-                action.payload.forEach(element => {
-                    state.result.push(element);
-                });
-                
+                state.result = action.payload
                 state.question = {};
                 state.status = "empty";
                 state.questionNumber = 0;

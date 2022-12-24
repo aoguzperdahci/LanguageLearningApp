@@ -31,7 +31,8 @@ const GapFillingQuestion = () => {
     }
 
     const submitAnswer = () => {
-        dispatch(saveAnswer({studentId: student.id, answer:answer}));
+        let studentAnswer = answer === "" ? "EMPTY" : answer;
+        dispatch(saveAnswer({ studentId: student.id, answer: studentAnswer }));
     }
 
     return (
@@ -46,7 +47,7 @@ const GapFillingQuestion = () => {
                 <Form.Control className="fs-5" placeholder="Write the answer" onChange={(e) => setAnswer(e.target.value)} />
             </InputGroup>
 
-            <Button className="fs-5 py-2 px-3 question-submit-button" onClick={() => submitAnswer()} disabled={exam.status === "loading"}>{exam.questionNumber === 10 ? "Finish Exam" : "Next Question"}</Button>
+            <Button className="fs-5 mt-2 py-2 px-3 question-submit-button" onClick={() => submitAnswer()} disabled={exam.status === "loading"}>{exam.questionNumber === 10 ? "Finish Exam" : "Next Question"}</Button>
         </div>
     )
 }

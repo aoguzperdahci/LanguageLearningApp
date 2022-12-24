@@ -30,8 +30,8 @@ const TestQuestion = () => {
     }
 
     const submitAnswer = () => {
-        console.log("submit", answer);
-        dispatch(saveAnswer({studentId: student.id, answer:answer}));
+        let studentAnswer = answer === "" ? "EMPTY" : answer;
+        dispatch(saveAnswer({ studentId: student.id, answer: studentAnswer }));
     }
 
     return (
@@ -42,27 +42,27 @@ const TestQuestion = () => {
             <p className="fs-4 mt-2">{exam.question.questionText}</p>
 
             <div className="form-check text-start fs-5">
-                <input className="form-check-input" type="radio" name="choice" id="choiceA" value={exam.question.choiceA} onChange={(e) => setAnswer(e.target.value)}/>
+                <input className="form-check-input" type="radio" name="choice" id="choiceA" value={exam.question.choiceA} onChange={(e) => setAnswer(e.target.value)} />
                 <label className="form-check-label" htmlFor="choiceA">{exam.question.choiceA}</label>
             </div>
             <div className="form-check text-start fs-5">
-                <input className="form-check-input" type="radio" name="choice" id="choiceB" value={exam.question.choiceB} onChange={(e) => setAnswer(e.target.value)}/>
+                <input className="form-check-input" type="radio" name="choice" id="choiceB" value={exam.question.choiceB} onChange={(e) => setAnswer(e.target.value)} />
                 <label className="form-check-label" htmlFor="choiceB">{exam.question.choiceB}</label>
             </div>
             <div className="form-check text-start fs-5">
-                <input className="form-check-input" type="radio" name="choice" id="choiceC" value={exam.question.choiceC} onChange={(e) => setAnswer(e.target.value)}/>
+                <input className="form-check-input" type="radio" name="choice" id="choiceC" value={exam.question.choiceC} onChange={(e) => setAnswer(e.target.value)} />
                 <label className="form-check-label" htmlFor="choiceC">{exam.question.choiceC}</label>
             </div>
             <div className="form-check text-start fs-5">
-                <input className="form-check-input" type="radio" name="choice" id="choiceD" value={exam.question.choiceD} onChange={(e) => setAnswer(e.target.value)}/>
+                <input className="form-check-input" type="radio" name="choice" id="choiceD" value={exam.question.choiceD} onChange={(e) => setAnswer(e.target.value)} />
                 <label className="form-check-label" htmlFor="choiceD">{exam.question.choiceD}</label>
             </div>
             <div className="form-check text-start fs-5">
-                <input className="form-check-input" type="radio" name="choice" id="choiceE" value={exam.question.choiceE} onChange={(e) => setAnswer(e.target.value)}/>
+                <input className="form-check-input" type="radio" name="choice" id="choiceE" value={exam.question.choiceE} onChange={(e) => setAnswer(e.target.value)} />
                 <label className="form-check-label" htmlFor="choiceE">{exam.question.choiceE}</label>
             </div>
 
-            <Button className="fs-5 py-2 px-3 question-submit-button" onClick={() => submitAnswer()} disabled={exam.status === "loading"}>{exam.questionNumber === 10 ? "Finish Exam" : "Next Question"}</Button>
+            <Button className="fs-5 mt-2 py-2 px-3 question-submit-button" onClick={() => submitAnswer()} disabled={exam.status === "loading"}>{exam.questionNumber === 10 ? "Finish Exam" : "Next Question"}</Button>
         </div>
     )
 }
