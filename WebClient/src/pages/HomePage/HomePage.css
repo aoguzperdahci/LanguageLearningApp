@@ -44,5 +44,19 @@ h4{
    
 }
 
+.content-image{
+    
+    width: 80px;
+    height: 80px;
+    margin-top:10px;
+}
+
+.big-image{
+    background-color: transparent;
+    width: 450px;
+    height: 450px;
+    margin-top:80px;
+}
+
 
 

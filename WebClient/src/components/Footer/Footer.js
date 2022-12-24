@@ -1,14 +1,15 @@
-import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-kit';
+import { Container, Row, Col } from 'react-bootstrap';
 import './Footer.css'
-export default function Footer(){
+import { BsInstagram,BsFacebook,BsYoutube,BsTwitter } from "react-icons/bs"
+export default function FooterComponent(){
     return(
         <div className='footer'>
-<MDBFooter bgColor='dark' className='text-center text-lg-start text-muted'>
+<div bgColor='dark' className='text-center text-lg-start text-muted'>
     
       <section className=''>
-        <MDBContainer className='text-center text-md-start mt-5'>
-          <MDBRow className='mt-3'>
-            <MDBCol md='2' lg='2' xl='2' className='mx-auto mb-4'>
+        <Container className='text-center text-md-start mt-5'>
+          <Row className='mt-3'>
+            <Col md='2' lg='2' xl='2' className='mx-auto mb-4'>
               <h6 className='text-uppercase fw-bold mb-4'>
                 
                 ABOUT US
@@ -33,9 +34,9 @@ export default function Footer(){
                   Career 
                 </a>
               </p>
-            </MDBCol>
+            </Col>
 
-            <MDBCol md='2' lg='2' xl='2' className='mx-auto mb-4'>
+            <Col md='2' lg='2' xl='2' className='mx-auto mb-4'>
               <h6 className='text-uppercase fw-bold mb-4'>USEFUL LINKS</h6>
               <p>
                 <a href='#!' className='text-reset'>
@@ -57,9 +58,9 @@ export default function Footer(){
                   FAQ
                 </a>
               </p>
-            </MDBCol>
+            </Col>
 
-            <MDBCol md='3' lg='2' xl='2' className='mx-auto mb-4'>
+            <Col md='3' lg='2' xl='2' className='mx-auto mb-4'>
               <h6 className='text-uppercase fw-bold mb-4'>CONTACT</h6>
               
               <p>
@@ -72,21 +73,39 @@ export default function Footer(){
                0 (232) 010 01 10
               </p>
               
-            </MDBCol>
+            </Col>
 
-            <MDBCol md='4' lg='3' xl='3' className='mx-auto mb-md-0 mb-4'>
+            <Col md='4' lg='3' xl='3' className='mx-auto mb-md-0 mb-4'>
               <h6 className='text-uppercase fw-bold mb-4'>SOCIAL MEDIA</h6>
-           
-            </MDBCol>
-          </MDBRow>
-        </MDBContainer>
+              <div class="row">
+                <div class='col'>
+                <a href='#'><BsFacebook color="#FFFFFF"/></a>
+                </div>
+                <div class='col'>
+                <a href='#'><BsInstagram color="#FFFFFF"/></a>
+
+                </div>
+                <div class='col'>
+                <a href='#'><BsYoutube color="#FFFFFF"/></a>
+
+                  </div>
+                  <div class='col'>
+                  <a href='#'><BsTwitter color="#FFFFFF"/></a>
+
+                  </div>
+             
+              
+              </div>
+            </Col>
+          </Row>
+        </Container>
       </section>
 
       <div className='text-center p-4' style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
         © 2022 All rights reserved.
         
       </div>
-    </MDBFooter>
+    </div>
    
         </div>
     );
