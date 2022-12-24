@@ -8,13 +8,14 @@ import ToastComponent from '../ToastComponent/ToastComponent';
 import Footer from '../Footer/Footer';
 import './App.css';
 import FooterComponent from '../Footer/Footer';
+import {LessonListPage} from '../../pages/Lesson/LessonListPage';
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
         <NavbarComponent />
-        
+    
         <Routes>
           <Route index element={<HomePage />}/>
           <Route index element={<FooterComponent />}/>
