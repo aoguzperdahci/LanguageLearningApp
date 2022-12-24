@@ -21,16 +21,16 @@ namespace ApiTest
     [TestClass]
     public class LessonControllerTests
     {
-       
+
         private readonly Mock<ILessonService> _lessonServiceMock;
 
         private Fixture _fixture;
-    
+
 
         public LessonControllerTests()
         {
             _fixture = new Fixture();
-              
+
             _lessonServiceMock = new Mock<ILessonService>();
         }
 
@@ -40,7 +40,7 @@ namespace ApiTest
             var lessonList = _fixture.CreateMany<Lesson>(5).ToList();
             var lessonId = lessonList.First().Id;
             var expected = lessonList.First();
-           _lessonServiceMock.Setup(x=>x.GetSingleLesson(lessonId)).Returns(new SuccesDataResult<Lesson>(expected));
+            _lessonServiceMock.Setup(x => x.GetSingleLesson(lessonId)).Returns(new SuccesDataResult<Lesson>(expected));
             var _lessonController = new LessonController(_lessonServiceMock.Object);
             var result = await _lessonController.GetSingleLesson(lessonId);
             var obj = result as ObjectResult;
@@ -56,8 +56,8 @@ namespace ApiTest
             var toExpect = new LessonShortInfo { Id = studentList.First().Id, Name = studentList.First().Name };
             _lessonServiceMock.Setup(s => s.GetCurrentLessonDetails(studentList.First().Id)).Returns(new SuccesDataResult<LessonShortInfo>(toExpect));
             var _lessonController = new LessonController(_lessonServiceMock.Object);
-            var result =  await _lessonController.GetCurrentLesson(studentList.First().Id);
-            var obj = result as ObjectResult;     
+            var result = await _lessonController.GetCurrentLesson(studentList.First().Id);
+            var obj = result as ObjectResult;
             Assert.AreEqual(200, obj.StatusCode);
         }
 

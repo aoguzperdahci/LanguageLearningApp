@@ -6,12 +6,13 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace LanguageLearningApp.Infrastructure.Repositories
 {
-    public class StudentRepository : ReadRepository<Student,LanguageLearningContext>, IStudentRepository
+    public class StudentRepository : IStudentRepository
    {
 
         public bool isStudent(int studentId)
@@ -31,7 +32,7 @@ namespace LanguageLearningApp.Infrastructure.Repositories
         {
             using (var context = new LanguageLearningContext())
             {
-                var student = context.Students.SingleOrDefault(s => s.Id == studentId);
+                var student = context.Students.Include(l=>l.Lesson).SingleOrDefault(s => s.Id == studentId);
                 var maxLessonOrder = context.Lessons.OrderBy(l => l.Order).Last().Order;
 
                 if (maxLessonOrder > student.Lesson.Order)
@@ -43,6 +44,17 @@ namespace LanguageLearningApp.Infrastructure.Repositories
             }
         }
 
-       
+        public Student Get(Expression<Func<Student, bool>> filter)
+        {
+            using (var context = new LanguageLearningContext())
+            {
+
+                return context.Students.Include(l=>l.Lesson).SingleOrDefault(filter);
+
+            }
+
+        }
+
+
     }
 }

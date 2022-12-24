@@ -67,7 +67,7 @@ namespace LanguageLearningApp.Service
                 results.Add(new ExamQuestionResult { Correct = correct, Difficulty = question.Question.Difficulty});
             }
 
-            var examResult = correctAnswerCount / examQuestions.Count() * 100;
+            var examResult = correctAnswerCount*10;
             _examRepository.SaveExamResult(examId, examResult);
 
             if (examResult >= PASSING_SCORE)

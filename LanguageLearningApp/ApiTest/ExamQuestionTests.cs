@@ -21,8 +21,8 @@ namespace ApiTest
     [TestClass]
     public class ExamQuestionTests
     {
-        private Mock<IExamQuestionService>_examQuestionService;
-        private Mock<IExamQuestionsRepository>_examQuestionsRepository;
+        private Mock<IExamQuestionService> _examQuestionService;
+        private Mock<IExamQuestionsRepository> _examQuestionsRepository;
         private Mock<IExamRepository> _examRepository;
 
 
@@ -33,13 +33,13 @@ namespace ApiTest
             _fixture = new Fixture();
 
             _examQuestionService = new Mock<IExamQuestionService>();
-            _examQuestionsRepository = new Mock<IExamQuestionsRepository>();    
-            _examRepository = new Mock<IExamRepository>();  
+            _examQuestionsRepository = new Mock<IExamQuestionsRepository>();
+            _examRepository = new Mock<IExamRepository>();
         }
         [TestMethod]
         public async Task NextQuestion()
         {
-            
+
             var exams = _fixture.CreateMany<Exam>(2).ToList();
             var examId = exams.Last().Id;
             var examQuestions = _fixture.CreateMany<ExamQuestions>(2).ToList();

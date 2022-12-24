@@ -22,6 +22,7 @@ namespace LanguageLearningApp.WebAPI.Controller
             var testQuestion = _examQuestionService.GetTestQuestion(questionId);
             if (testQuestion.Success)
             {
+                testQuestion.Data.CorrectAnswer = "";
                 return Ok(testQuestion);
             }
             else
@@ -29,6 +30,7 @@ namespace LanguageLearningApp.WebAPI.Controller
                 var gapFillingQuestion = _examQuestionService.GetGapFillingQuestion(questionId);
                 if (gapFillingQuestion.Success)
                 {
+                    gapFillingQuestion.Data.CorrectAnswer = "";
                     return Ok(gapFillingQuestion);
                 }
             }

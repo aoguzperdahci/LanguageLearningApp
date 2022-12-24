@@ -19,7 +19,7 @@ namespace LanguageLearningApp.Infrastructure.Repositories
                 ExamId = ExamId,
                 QuestionNumber = QuestionNumber,
                 Question = question,
-                StudentAnswer = ""
+                StudentAnswer = "None"
             };
             using (var context = new LanguageLearningContext())
             {
@@ -34,7 +34,7 @@ namespace LanguageLearningApp.Infrastructure.Repositories
         {
             using(var context = new LanguageLearningContext())
             {
-                 return context.ExamQuestions.Where(x => x.ExamId == examQuestionId).OrderBy(q => q.QuestionNumber).Where(s => s.StudentAnswer.Equals("")).First().Question.Id;
+                 return context.ExamQuestions.Where(x => x.ExamId == examQuestionId).OrderBy(q => q.QuestionNumber).Where(s => s.StudentAnswer.Equals("None")).Include(q=>q.Question).First().Question.Id;
             }
         }
 
@@ -43,7 +43,7 @@ namespace LanguageLearningApp.Infrastructure.Repositories
             
             using(var context = new LanguageLearningContext())
             {
-                var examQuestion = context.ExamQuestions.Where(x => x.ExamId == examQuestionId).OrderBy(q => q.QuestionNumber).Where(y => y.StudentAnswer.Equals("")).First();
+                var examQuestion = context.ExamQuestions.Where(x => x.ExamId == examQuestionId).OrderBy(q => q.QuestionNumber).Where(y => y.StudentAnswer.Equals("None")).First();
                 examQuestion.StudentAnswer = answer;
                 context.SaveChanges();
             }
@@ -66,6 +66,14 @@ namespace LanguageLearningApp.Infrastructure.Repositories
                 var question = context.GapFillingQuestions.Where(q => q.Id == questionId).FirstOrDefault();
 
                 return question;
+            }
+        }
+        public List<ExamQuestions> GetAll(Expression<Func<ExamQuestions, bool>> filter = null)
+        {
+            using (var context = new LanguageLearningContext())
+            {
+                return filter == null
+                 ? context.Set<ExamQuestions>().Include(q=>q.Question).ToList() : context.Set<ExamQuestions>().Include(q=>q.Question).Where(filter).ToList();
             }
         }
     }
