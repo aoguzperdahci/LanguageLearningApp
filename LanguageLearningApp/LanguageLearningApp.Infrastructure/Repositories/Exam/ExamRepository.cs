@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,7 +39,7 @@ namespace LanguageLearningApp.Infrastructure.Repositories
             using(var context = new LanguageLearningContext())
             {
                 
-                return (context.Exams.OrderBy(e => e.Id).LastOrDefault(s=>s.Student.Id==studentId));
+                return (context.Exams.Include(l=>l.Lesson).Include(s=>s.Student).OrderBy(e => e.Id).LastOrDefault(s=>s.Student.Id==studentId));
             } 
         }
 
@@ -49,6 +50,14 @@ namespace LanguageLearningApp.Infrastructure.Repositories
                 var exam = context.Exams.Where(e => e.Id == examId).Single();
                 exam.ExamResult = examResult;
                 context.SaveChanges();
+            }
+        }
+        public List<Exam> GetAll(Expression<Func<Exam, bool>> filter = null)
+        {
+            using (var context = new LanguageLearningContext())
+            {
+                return filter == null
+                 ? context.Set<Exam>().Include(s=>s.Student).Include(l=>l.Lesson).ToList() : context.Set<Exam>().Include(s => s.Student).Include(l => l.Lesson).Where(filter).ToList();
             }
         }
 

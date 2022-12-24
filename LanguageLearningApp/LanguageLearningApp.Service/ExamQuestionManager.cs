@@ -27,14 +27,14 @@ namespace LanguageLearningApp.Service
             _studentRepository = studentRepository;
         }
 
-        public IDataResult<Question> GetNextQuestion(int studentId)
+        public int GetNextQuestionId(int studentId)
         {
             if (_studentRepository.isStudent(studentId))
             {
                 var examId = _examRepository.GetTheLastExam(studentId).Id;
-                return new SuccesDataResult<Question>(_examQuestionsRepository.NextQuestion(examId), Messages.QuestionServed);
+                return _examQuestionsRepository.NextQuestionId(examId);
             }
-            return new ErrorDataResult<Question>(Messages.StudentMissing);  
+            return -1;
         }
 
         public IResult GetAnswer(int studentId, string answer)
@@ -67,15 +67,42 @@ namespace LanguageLearningApp.Service
                 results.Add(new ExamQuestionResult { Correct = correct, Difficulty = question.Question.Difficulty});
             }
 
-            var examResult = correctAnswerCount / examQuestions.Count() * 100;
+            var examResult = correctAnswerCount*10;
             _examRepository.SaveExamResult(examId, examResult);
 
             if (examResult >= PASSING_SCORE)
             {
                 _studentRepository.UpdateStudentLesson(studentId);
             }
-
             return results;
+        }
+
+        public IDataResult<TestQuestion> GetTestQuestion(int questionId)
+        {
+            var question = _examQuestionsRepository.GetTestQuestion(questionId);
+
+            if (question != null)
+            {
+                return new SuccesDataResult<TestQuestion>(question, Messages.QuestionServed);
+            }
+            else
+            {
+                return new ErrorDataResult<TestQuestion>(Messages.StudentMissing);
+            }
+        }
+
+        public IDataResult<GapFillingQuestion> GetGapFillingQuestion(int questionId)
+        {
+            var question = _examQuestionsRepository.GetGapFillingQuestion(questionId);
+
+            if (question != null)
+            {
+                return new SuccesDataResult<GapFillingQuestion>(question, Messages.QuestionServed);
+            }
+            else
+            {
+                return new ErrorDataResult<GapFillingQuestion>(Messages.StudentMissing);
+            }
         }
     }
 }

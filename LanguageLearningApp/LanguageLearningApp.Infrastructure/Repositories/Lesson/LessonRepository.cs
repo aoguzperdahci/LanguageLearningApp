@@ -1,6 +1,7 @@
 ﻿using LanguageLearningApp.Core.Entities;
 using LanguageLearningApp.Core.Interfaces.Repository;
 using LanguageLearningApp.Infrastructure.Contexts;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,8 @@ namespace LanguageLearningApp.Infrastructure.Repositories
         {
             using (LanguageLearningContext context = new LanguageLearningContext())
             {
-                var currentStudentLesson = context.Students.FirstOrDefault(x => x.Id == studentId).Lesson;
+                var currentStudent = context.Students.Include(s => s.Lesson).FirstOrDefault(x => x.Id == studentId);
+                var currentStudentLesson = currentStudent.Lesson;
                 var currentLessonDto = new LessonShortInfo { Id = currentStudentLesson.Id, Name = currentStudentLesson.Name };
                 return currentLessonDto;
             }

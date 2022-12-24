@@ -16,16 +16,28 @@ namespace LanguageLearningApp.WebAPI.Controller
         }
 
         [HttpGet("getNextQuestion")]
-        public IActionResult NextQuestion(int studentId)
+        public async Task<IActionResult> NextQuestion(int studentId)
         {
-           var result = _examQuestionService.GetNextQuestion(studentId);
-            if (result.Success)
+            var questionId = _examQuestionService.GetNextQuestionId(studentId);
+            var testQuestion = _examQuestionService.GetTestQuestion(questionId);
+            if (testQuestion.Success)
             {
-                return Ok(result);
+                testQuestion.Data.CorrectAnswer = "";
+                return Ok(testQuestion);
             }
-            return BadRequest(result);
+            else
+            {
+                var gapFillingQuestion = _examQuestionService.GetGapFillingQuestion(questionId);
+                if (gapFillingQuestion.Success)
+                {
+                    gapFillingQuestion.Data.CorrectAnswer = "";
+                    return Ok(gapFillingQuestion);
+                }
+            }
+
+            return BadRequest();
         }
-        
+
         [HttpPost("saveStudentAnswer")]
         public IActionResult SaveStudentAnswer(int studentId, string answer)
         {
@@ -34,13 +46,13 @@ namespace LanguageLearningApp.WebAPI.Controller
             {
                 return Ok(result);
             }
-            return BadRequest();    
+            return BadRequest();
         }
 
         [HttpGet("getExamResult")]
         public IActionResult GetExamResult(int studentId)
         {
-            var result =_examQuestionService.GetExamResult(studentId);
+            var result = _examQuestionService.GetExamResult(studentId);
             return Ok(result);
         }
     }
