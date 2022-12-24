@@ -38,6 +38,7 @@ namespace LanguageLearningApp.Service
         {
             if (_studentService.isStudent(studentId))
             {
+                
                 var currentStudent = _studentService.Get(s => s.Id == studentId);
                 _examService.CreateExam(currentStudent, currentStudent.Lesson);
                 return new SuccessResult(Messages.ExamCreated);
@@ -60,25 +61,25 @@ namespace LanguageLearningApp.Service
                 for (int i = 1; i <= easyNumberOfQuestion; i++)
                 {
                     int index = random.Next(0, easyQuestions.Count);
-                    var question = lessonQuestions.ElementAt(index);
-                    lessonQuestions.Remove(question);
+                    var question = easyQuestions.ElementAt(index);
+                    easyQuestions.Remove(question);
                     _examQuestionsRepository.SaveExamQuestion(exam.Id, i, question);
                 }
 
                 for (int i = 1; i <= mediumNumberOfQuestion; i++)
                 {
                     int index = random.Next(0, mediumQuestions.Count);
-                    var question = lessonQuestions.ElementAt(index);
-                    lessonQuestions.Remove(question);
-                    _examQuestionsRepository.SaveExamQuestion(exam.Id, i, question);
+                    var question = mediumQuestions.ElementAt(index);
+                    mediumQuestions.Remove(question);
+                    _examQuestionsRepository.SaveExamQuestion(exam.Id, easyNumberOfQuestion+i, question);
                 }
 
                 for (int i = 1; i <= hardNumberOfQuestion; i++)
                 {
                     int index = random.Next(0, hardQuestions.Count);
-                    var question = lessonQuestions.ElementAt(index);
-                    lessonQuestions.Remove(question);
-                    _examQuestionsRepository.SaveExamQuestion(exam.Id, i, question);
+                    var question = hardQuestions.ElementAt(index);
+                    hardQuestions.Remove(question);
+                    _examQuestionsRepository.SaveExamQuestion(exam.Id, i+easyNumberOfQuestion+mediumNumberOfQuestion, question);
                 }
                 return new SuccessResult(Messages.ExamQuestionCreated);
 

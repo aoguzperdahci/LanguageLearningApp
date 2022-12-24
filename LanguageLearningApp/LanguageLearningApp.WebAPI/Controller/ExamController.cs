@@ -16,7 +16,7 @@ namespace LanguageLearningApp.WebAPI.Controller
         }
 
         [HttpPost("createExam")]
-        public IActionResult CreateExam(int studentId)
+        public async Task<IActionResult> CreateExam(int studentId)
         {
             var resultCreated =_examService.CreateExam(studentId);
             if (resultCreated.Success)
