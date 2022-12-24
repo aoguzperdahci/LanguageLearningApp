@@ -22,8 +22,9 @@ namespace ApiTest
     public class ExamQuestionTests
     {
         private Mock<IExamQuestionService> _examQuestionService;
-        private Mock<IExamQuestionsRepository> _examQuestionsRepository;
-        private Mock<IExamRepository> _examRepository;
+        private Mock<IExamQuestionsRepository> _examQuestionRepository;
+        
+        
 
 
         private Fixture _fixture;
@@ -31,28 +32,21 @@ namespace ApiTest
         public ExamQuestionTests()
         {
             _fixture = new Fixture();
-
+            _examQuestionRepository = new Mock<IExamQuestionsRepository>();
             _examQuestionService = new Mock<IExamQuestionService>();
-            _examQuestionsRepository = new Mock<IExamQuestionsRepository>();
-            _examRepository = new Mock<IExamRepository>();
         }
         [TestMethod]
         public async Task NextQuestion()
         {
-
-            var exams = _fixture.CreateMany<Exam>(2).ToList();
-            var examId = exams.Last().Id;
-            var examQuestions = _fixture.CreateMany<ExamQuestions>(2).ToList();
-            examQuestions.First().ExamId = exams.First().Id;
-            examQuestions.Last().ExamId = exams.Last().Id;
-
-            var studentId = exams.Last().Student.Id;
-            var expectedExam = exams.Last();
-            var expectedExamQuestion = examQuestions.Last().Question;
-            _examRepository.Setup(e => e.GetTheLastExam(studentId)).Returns(expectedExam);
-            _examQuestionsRepository.Setup(e => e.NextQuestion(examId)).Returns((expectedExamQuestion));
-            _examQuestionService.Setup(e => e.GetNextQuestion(studentId)).Returns(new SuccesDataResult<Question>(expectedExamQuestion));
-
+            var exams = _fixture.Create<Exam>();
+            var gapFillingQuestion = _fixture.Create<GapFillingQuestion>();
+            var examQuestion = _fixture.Create<TestQuestion>();
+            examQuestion.Id = exams.Id;
+            var studentId = exams.Student.Id;
+            var expectedQuestionId = examQuestion.Id;
+            _examQuestionService.Setup(e => e.GetNextQuestionId(studentId)).Returns(expectedQuestionId);
+            _examQuestionService.Setup(e => e.GetTestQuestion(expectedQuestionId)).Returns(new SuccesDataResult<TestQuestion>(examQuestion));
+            _examQuestionService.Setup(e => e.GetGapFillingQuestion(expectedQuestionId)).Returns(new ErrorDataResult<GapFillingQuestion>());
             var controller = new ExamQuestionController(_examQuestionService.Object);
             var result = await controller.NextQuestion(studentId);
             var obj = result as ObjectResult;
@@ -60,6 +54,30 @@ namespace ApiTest
             Assert.AreEqual(200, obj.StatusCode);
 
         }
+        [TestMethod]
+        public async Task SaveStudentAnswer()
+        {
+            var student = _fixture.Create<Student>();
+            var answer = "This is an answer";
+            _examQuestionService.Setup(e => e.GetAnswer(student.Id, answer)).Returns(new SuccessResult());
+            var controller = new ExamQuestionController(_examQuestionService.Object);
+            var result = await controller.SaveStudentAnswer(student.Id,answer);
+            var obj = result as ObjectResult;
+            Assert.AreEqual(200, obj.StatusCode);
+        }
 
+        [TestMethod]
+        public async Task GetExamResult()
+        {
+            var student = _fixture.Create<Student>();
+            var exam = _fixture.Create<Exam>();
+            var examQuestions = _fixture.CreateMany<ExamQuestions>(10).ToList();
+            examQuestions.ForEach(x => x.ExamId = exam.Id);
+            _examQuestionService.Setup(e => e.GetExamResult(student.Id)).Returns(new List<ExamQuestionResult>());
+            var controller = new ExamQuestionController(_examQuestionService.Object);
+            var result = await controller.GetExamResult(student.Id);
+            var obj = result as ObjectResult;
+            Assert.AreEqual(200, obj.StatusCode);
+        }
     }
 }
