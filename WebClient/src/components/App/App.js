@@ -6,9 +6,10 @@ import InboxPage from '../../pages/InboxPage/InboxPage';
 import PersonalTutorPage from '../../pages/PersonalTutorPage/PersonalTutorPage';
 import TutoringPage from '../../pages/TutoringPage/TutoringPage';
 import ToastComponent from '../ToastComponent/ToastComponent';
-import Footer from '../Footer/Footer';
+import Login from '../Login/Login'
+import SignUp from '../SignUp/SignUp'
 import './App.css';
-import FooterComponent from '../Footer/Footer';
+import Try from '../Login/Try';
 
 function App() {
   return (
@@ -16,12 +17,13 @@ function App() {
       <div className="App">
         <Routes>
           <Route index element={<HomePage />}/>
-          <Route index element={<FooterComponent />}/>
           <Route path="/personal-tutor" element={<PersonalTutorPage></PersonalTutorPage>}></Route>
           <Route path="/inbox" element={<InboxPage></InboxPage>}></Route>
           <Route path="/tutoring" element={<TutoringPage></TutoringPage>}></Route>
           <Route path="/exam" element={<ExamPage></ExamPage>}></Route>
           <Route path="/forum" element={<ForumPage></ForumPage>}></Route>
+          <Route path="/login" element={<Login></Login>}></Route>
+          <Route path="/signup" element={<SignUp></SignUp>}></Route>
         </Routes>
         <ToastComponent />
       </div>
