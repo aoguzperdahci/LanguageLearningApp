@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@charkour/react-reactions": "^0.11.0",
     "@reduxjs/toolkit": "^1.9.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -11,6 +12,7 @@
     "react-bootstrap": "^2.7.0",
     "react-datepicker": "^4.8.0",
     "react-dom": "^18.2.0",
+    "react-edit-button": "^1.0.2",
     "react-icons": "^4.7.1",
     "react-popup": "^0.11.0",
     "react-popup-alert": "^2.0.0",

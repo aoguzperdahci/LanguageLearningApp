@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace LanguageLearningApp.Core.Entities
 {
+
     public class GapFillingQuestion: Question
     {
 

@@ -1,0 +1,62 @@
+
+.left{
+    float: left; width: 50%;
+    background-color: #D2F1FF;
+    height: 100vh;
+}
+
+.right{
+    float: right; width: 50%;
+    background-color: #D2F1FF;
+    height: 100vh;
+}
+
+
+
+.header{
+    font-size: 70px;
+    color: #3752B4;
+    position: absolute;
+    top:120px;
+    left: 100px;
+}
+
+.explain{
+    position: absolute;
+    top:300px;
+    left: 80px;
+}
+
+p{
+    font-size: 20px;
+    
+}
+
+h4{
+    color:#00B1FF
+}
+
+#content{
+    position: absolute;
+    top:400px;  
+    left: 50px;
+    width: 50%;
+   
+}
+
+.content-image{
+    
+    width: 80px;
+    height: 80px;
+    margin-top:10px;
+}
+
+.big-image{
+    background-color: transparent;
+    width: 450px;
+    height: 450px;
+    margin-top:80px;
+}
+
+
+
