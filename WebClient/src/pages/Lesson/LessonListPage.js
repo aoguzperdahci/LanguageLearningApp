@@ -14,16 +14,21 @@ export const LessonListPage =()=>{
         dispatch(getCurrentLesson(student.id))
     }, []);
 
+    const test = () => {
+        console.log(lessonList);
+    }
+
     return (
         <div>
+            <button onClick={() => test()}>Test</button>
             <Card className="listCard">
-                <ul class="list-group list-group-flush">
+                {/* <ul className="list-group list-group-flush">
                     {lessonList?.map(item => (
                         <li key={item.Id} class="list-group-item">
                             <a href={item.url}>{item.Name}</a>
                             </li>
                     ))}
-                </ul>
+                </ul> */}
 
             </Card>
 
@@ -33,7 +38,7 @@ export const LessonListPage =()=>{
 } 
 
 
-
+export default LessonListPage
 
 
     

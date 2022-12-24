@@ -8,7 +8,7 @@ import ToastComponent from '../ToastComponent/ToastComponent';
 import Footer from '../Footer/Footer';
 import './App.css';
 import FooterComponent from '../Footer/Footer';
-import {LessonListPage} from '../../pages/Lesson/LessonListPage';
+import LessonListPage from '../../pages/Lesson/LessonListPage';
 
 function App() {
   return (
@@ -22,6 +22,7 @@ function App() {
           <Route path="/personal-tutor" element={<PersonalTutorPage></PersonalTutorPage>}></Route>
           <Route path="/inbox" element={<InboxPage></InboxPage>}></Route>
           <Route path="/tutoring" element={<TutoringPage></TutoringPage>}></Route>
+          <Route path="/lessons" element={<LessonListPage></LessonListPage>}></Route>
         </Routes>
         <Footer />
         <ToastComponent />
