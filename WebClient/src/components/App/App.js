@@ -9,7 +9,7 @@ import ToastComponent from '../ToastComponent/ToastComponent';
 import Login from '../Login/Login'
 import SignUp from '../SignUp/SignUp'
 import './App.css';
-import Try from '../Login/Try';
+import ExamResult from '../../pages/ExamResult/ExamResult';
 
 function App() {
   return (
@@ -21,6 +21,7 @@ function App() {
           <Route path="/inbox" element={<InboxPage></InboxPage>}></Route>
           <Route path="/tutoring" element={<TutoringPage></TutoringPage>}></Route>
           <Route path="/exam" element={<ExamPage></ExamPage>}></Route>
+          <Route path="/exam-result" element={<ExamResult></ExamResult>}></Route>
           <Route path="/forum" element={<ForumPage></ForumPage>}></Route>
           <Route path="/login" element={<Login></Login>}></Route>
           <Route path="/signup" element={<SignUp></SignUp>}></Route>
