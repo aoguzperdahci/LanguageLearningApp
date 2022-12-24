@@ -4,7 +4,48 @@ var initialState = {
     questionNumber: 0,
     question: {},
     status: "empty",
-    result: [],
+    result: [
+            {
+                "correct": true,
+                "difficulty": 0
+            },
+            {
+                "correct": true,
+                "difficulty": 0
+            },
+            {
+                "correct": false,
+                "difficulty": 0
+            },
+            {
+                "correct": false,
+                "difficulty": 0
+            },
+            {
+                "correct": false,
+                "difficulty": 1
+            },
+            {
+                "correct": true,
+                "difficulty": 1
+            },
+            {
+                "correct": false,
+                "difficulty": 1
+            },
+            {
+                "correct": false,
+                "difficulty": 2
+            },
+            {
+                "correct": false,
+                "difficulty": 2
+            },
+            {
+                "correct": false,
+                "difficulty": 2
+            }
+    ],
 };
 
 var API = process.env.REACT_APP_API_KEY;
@@ -31,7 +72,7 @@ export const saveAnswer = createAsyncThunk('exam/saveAnswer', async ({ studentId
 export const getExamResult = createAsyncThunk('exam/getExamResult', async (studentId) => {
     const response = await fetch(API + "ExamQuestion/getExamResult?studentId=" + studentId);
     const data = await response.json();
-    return data.data
+    return data
 })
 
 
