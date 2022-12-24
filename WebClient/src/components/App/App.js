@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ForumPage from '../Forum/ForumPage';
 import HomePage from '../../pages/HomePage/HomePage';
 import ExamPage from '../../pages/ExamPage/ExamPage';
 import InboxPage from '../../pages/InboxPage/InboxPage';
@@ -20,6 +21,7 @@ function App() {
           <Route path="/inbox" element={<InboxPage></InboxPage>}></Route>
           <Route path="/tutoring" element={<TutoringPage></TutoringPage>}></Route>
           <Route path="/exam" element={<ExamPage></ExamPage>}></Route>
+          <Route path="/forum" element={<ForumPage></ForumPage>}></Route>
         </Routes>
         <ToastComponent />
       </div>
