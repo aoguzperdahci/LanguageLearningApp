@@ -11,8 +11,6 @@ namespace LanguageLearningApp.Core.Interfaces.Services
     public interface IStudentService
     {
         IDataResult<Lesson> currentLesson();
-        public IResult getStudentId(int StudentId);
-
         
     }
 }
