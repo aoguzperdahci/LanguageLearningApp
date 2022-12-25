@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import GapFillingQuestion from '../../components/GapFillingQuestion/GapFillingQuestion';
 import TestQuestion from '../../components/TestQuestion/TestQuestion';
 import { createExam, getExamResult, getNextQuestion } from '../../redux/ExamSlice';
+import Counter from './Counter';
 import "./ExamPage.css";
 
 const ExamPage = () => {
@@ -12,6 +13,7 @@ const ExamPage = () => {
     const exam = useSelector(state => state.exam);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [timerStart, setTimerStart] = useState(false)
 
     useEffect(() => {
         console.log(exam)
@@ -27,6 +29,7 @@ const ExamPage = () => {
 
     const handleCreateExam = () => {
         dispatch(createExam(student.id));
+        setTimerStart(true);
     }
 
     const isTestQuestion = () => {
@@ -39,9 +42,8 @@ const ExamPage = () => {
 
     return (
         <div className="exam-page d-flex justify-content-center" style={{ flexFlow: "wrap" }}>
-
             {exam.status === "empty" && <Button className="create-exam-button fs-4 px-5 py-2" onClick={() => handleCreateExam()} disabled={exam.status === "loading"}>Start Exam</Button>}
-
+            {timerStart && <div className="timer fs-3">{<Counter></Counter>}</div>}
             {exam.status === "served" && (isTestQuestion() ? <TestQuestion></TestQuestion> : <GapFillingQuestion></GapFillingQuestion>)}
 
         </div>

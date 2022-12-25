@@ -31,7 +31,7 @@ export const saveAnswer = createAsyncThunk('exam/saveAnswer', async ({ studentId
 export const getExamResult = createAsyncThunk('exam/getExamResult', async (studentId) => {
     const response = await fetch(API + "ExamQuestion/getExamResult?studentId=" + studentId);
     const data = await response.json();
-    return data.data
+    return data
 })
 
 
@@ -49,6 +49,7 @@ const examSlice = createSlice({
             .addCase(createExam.fulfilled, (state, action) => {
                 if (action.payload) {
                     state.status = "created";
+                    state.result = [];
                 }
             })
             .addCase(getNextQuestion.pending, (state, action) => {
@@ -71,10 +72,7 @@ const examSlice = createSlice({
                 state.status = "loading";
             })
             .addCase(getExamResult.fulfilled, (state, action) => {
-                action.payload.forEach(element => {
-                    state.result.push(element);
-                });
-                
+                state.result = action.payload
                 state.question = {};
                 state.status = "empty";
                 state.questionNumber = 0;
