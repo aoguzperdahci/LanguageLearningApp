@@ -1,0 +1,18 @@
+.gap-filling-question {
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 12px;
+    border: 1px solid #00b1ff;
+    border-radius: 6px;
+}
+
+.question-submit-button {
+    background-color: #8643ae;
+    border: 2px solid #8643ae;
+}
+
+.question-submit-button:hover {
+    background-color: #d2f1ff;
+    color: #262626;
+    border: 2px solid #8643ae;
+}

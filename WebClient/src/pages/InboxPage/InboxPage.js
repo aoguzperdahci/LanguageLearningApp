@@ -1,9 +1,12 @@
 import React from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
+import NavbarComponent from '../../components/NavbarComponent/NavbarComponent';
 import './InboxPage.css';
 
 const InboxPage = () => {
     return (
+        <>
+        <NavbarComponent></NavbarComponent>
         <Container fluid>
             <Row className="inbox-row">
 
@@ -31,6 +34,7 @@ const InboxPage = () => {
 
             </Row>
         </Container>
+        </>
     )
 }
 

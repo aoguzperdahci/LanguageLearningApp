@@ -1,0 +1,173 @@
+.contain-forum{
+    width: 87%;
+    height: 87%;
+    background-color: #D2F1FF;
+    margin-top: 10%;
+    
+    margin-right: 20%;
+}
+
+.contain-comments{
+    margin-top: 10%;
+
+    width: 87%;
+    height: 87%;
+    background-color: #D2F1FF;
+    margin-left: 10%;
+    overflow-y: scroll;
+}
+
+.left{
+    float: left; width: 50%;
+    background-color: #262626;
+    height: 100vh;
+}
+
+.right{
+    float: right; width: 50%;
+    background-color: #262626;
+    height: 100vh;
+}
+
+.comments-header2{
+    color: #262626;
+    margin-left:-300px;
+
+}
+
+.form-label{
+    color: #262626;
+    
+
+}
+
+.comments-header{
+    margin-top:10px ;
+    margin-left:-350px;
+    color: #262626;
+}
+
+.form-header{
+    margin-top:10px ;
+    margin-left:-300px;
+    color: #262626;
+}
+
+.form-header2{
+    color: #262626;
+    margin-left:-400px;
+}
+
+#exampleFormControlInput1{
+    
+    margin-left: 50px;
+    width: 550px;
+
+}
+
+#exampleFormControlTextarea1{
+    margin-left: 50px;
+    width: 550px;
+}
+
+#customFile{
+    margin-left: 50px;
+    width: 550px;
+}
+
+.comment-button{
+    background-color:#FFD753;
+    border-color: #FFD753;
+    color:#262626;
+    width: 100px;
+    position: absolute;
+    right:50px;
+    top: 500px;
+}
+
+.be-comment-block {
+    margin-top: 50px;
+    margin-bottom: 50px !important;
+    border: 1px solid #262626;
+    border-radius: 2px;
+    padding: 50px 70px;
+    
+}
+
+.comments-title {
+    font-size: 16px;
+    color: #262626;
+    margin-bottom: 15px;
+    font-family: 'Conv_helveticaneuecyr-bold';
+}
+
+.be-img-comment {
+    width: 60px;
+    height: 60px;
+    float: left;
+    margin-bottom: 15px;
+}
+
+.be-ava-comment {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.be-comment-content {
+    margin-left: 80px;
+}
+
+.be-comment-content span {
+    display: inline-block;
+    width: 49%;
+    margin-bottom: 15px;
+}
+
+.be-comment-name {
+    font-size: 13px;
+    font-family: 'Conv_helveticaneuecyr-bold';
+}
+
+.be-comment-content a {
+    color: #383b43;
+}
+
+.be-comment-content span {
+    display: inline-block;
+    width: 49%;
+    margin-bottom: 15px;
+}
+
+.be-comment-time {
+    text-align: right;
+}
+
+.be-comment-time {
+    font-size: 11px;
+    color: #b4b7c1;
+}
+
+.be-comment-text {
+    font-size: 13px;
+    line-height: 18px;
+    color: #7a8192;
+    display: block;
+    background: #f6f6f7;
+    border: 1px solid #edeff2;
+    padding: 15px 20px 20px 20px;
+}
+
+.closeButton{
+    position: relative;
+    top:-40px;
+    left: 270px;
+}
+
+.editButton{
+    position: relative;
+    top:-40px;
+    left: 250px;
+}
+
+
