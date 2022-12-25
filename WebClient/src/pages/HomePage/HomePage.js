@@ -1,11 +1,15 @@
 import { Button } from 'react-bootstrap';
 import './HomePage.css';
+import NavbarComponent from '../../components/NavbarComponent/NavbarComponent'
+import Footer from '../../components/Footer/Footer'
+
 
 
 export default function HomePage() {
     return (
 
         <div>
+            <NavbarComponent/>
             <div className="left">
                 <h1 className='header'>
                     Learn Languages <br></br>
@@ -45,6 +49,7 @@ export default function HomePage() {
 <img bg="transparent" className= "big-image" src="https://previews.123rf.com/images/melpomen/melpomen1703/melpomen170300709/74615080-language-school-text-with-colorful-illustrations-on-a-yellow-background.jpg"/>
 
             </div>
+            <Footer/>
         </div>
 
 
