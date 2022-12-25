@@ -31,10 +31,10 @@ const NavbarComponent = () => {
             case "teacher":
                 navigation = (
                     <>
-                        <NavLink to="tutoring">
+                        <NavLink to="/tutoring">
                             <Button className="navbar-button-default me-1">Tutor a Student</Button>
                         </NavLink>
-                        <NavLink to="evaluate-exercise">
+                        <NavLink to="/evaluate-exercise">
                             <Button className="navbar-button-default me-1">Evaluate Exercise</Button>
                         </NavLink>
                     </>);
@@ -42,7 +42,7 @@ const NavbarComponent = () => {
             case "admin":
                 navigation = (
                     <>
-                        <NavLink to="edit-lessons">
+                        <NavLink to="/edit-lessons">
                             <Button className="navbar-button-default me-1">Edit Lessons</Button>
                         </NavLink>
                     </>);
@@ -63,7 +63,7 @@ const NavbarComponent = () => {
                 <>
                     <NavDropdown title={user.name} id="collasible-nav-dropdown">
                         <NavDropdown.Item className="default">
-                            <NavLink to="account">
+                            <NavLink to="/account">
                                 <MdPersonOutline className="me-1 fs-5 icon"></MdPersonOutline>
                                 Account
                             </NavLink>
@@ -84,7 +84,7 @@ const NavbarComponent = () => {
                     <NavLink to="/signup">
                         <Button className="navbar-button-light me-2 px-4">Sign up</Button>
                     </NavLink>
-                    <NavLink to="login">
+                    <NavLink to="/login">
                         <Button className="navbar-button-dark px-4">Log in</Button>
                     </NavLink>
                 </>);

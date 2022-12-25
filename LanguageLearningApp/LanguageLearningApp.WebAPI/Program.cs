@@ -6,6 +6,7 @@ using LanguageLearningApp.Core.Interfaces.Services;
 using LanguageLearningApp.Infrastructure.DependencyResolvers.Autofac;
 using LanguageLearningApp.Infrastructure.Repositories;
 using LanguageLearningApp.Service;
+using LanguageLearningApp.WebAPI;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,6 +42,8 @@ if (app.Environment.IsDevelopment())
 app.UseCors("MyPolicy");
 
 app.UseHttpsRedirection();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseAuthorization();
 

@@ -1,10 +1,14 @@
 import React from 'react';
 import { Button, Col, Row } from 'react-bootstrap';
 import { BsFillCameraVideoOffFill, BsFillMicMuteFill, BsGearFill } from 'react-icons/bs';
+import { useDispatch } from 'react-redux';
+import { showErrorNotification } from '../../redux/ToastSlice';
 import NavbarComponent from '../../components/NavbarComponent/NavbarComponent';
 import "./TutoringPage.css"
 
 const TutoringPage = () => {
+    const dispatch = useDispatch();
+
     return (
         <>
         <NavbarComponent></NavbarComponent>
@@ -32,7 +36,7 @@ const TutoringPage = () => {
                         </Col>
                     </Row>
                 </div>
-                    <Button className="w-100 fs-5 tutoring-page-button">Tutor a Student</Button>
+                    <Button className="w-100 fs-5 tutoring-page-button" onClick={() => dispatch(showErrorNotification("This feature is not ready"))}>Tutor a Student</Button>
             </div>
         </div>
         </>
