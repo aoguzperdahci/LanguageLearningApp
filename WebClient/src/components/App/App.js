@@ -10,6 +10,8 @@ import Login from '../Login/Login'
 import SignUp from '../SignUp/SignUp'
 import './App.css';
 import ExamResultPage from '../../pages/ExamResultPage/ExamResultPage';
+import LessonListPage from '../../pages/Lesson/LessonListPage';
+import { LessonDetailPage } from '../../pages/Lesson/LessonDetailPage';
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
           <Route path="/forum" element={<ForumPage></ForumPage>}></Route>
           <Route path="/login" element={<Login></Login>}></Route>
           <Route path="/signup" element={<SignUp></SignUp>}></Route>
+          <Route path="/lessons" element={<LessonListPage></LessonListPage>}></Route>
+          <Route path="/lesson/detail" element={<LessonDetailPage></LessonDetailPage>}></Route>
         </Routes>
         <ToastComponent />
       </div>
