@@ -10,10 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useLayoutEffect } from 'react';
 export const LessonDetailPage = () => {
     const lesson = useSelector(state => state.lesson);
-    const source = ()=>{
-        return lessonId === 34 ? "http://3.bp.blogspot.com/-u-byxR6mtDw/UyidxzYeDMI/AAAAAAAABBU/80rsehSVHpY/s1600/perfect+continuous+tense+GENEL+TABLO.png":
-        (lessonId===35? "https://st.adda247.com/https://s3-ap-south-1.amazonaws.com/adda247jobs-wp-assets-adda247/jobs/wp-content/uploads/sites/2/2022/08/27163530/Past-Perfect-Continuous-Tense.jpg":null);
-    }
+   
     let navigate = useNavigate();
     const routeChange = (path) => {
         path = "/" + path;
@@ -40,7 +37,6 @@ export const LessonDetailPage = () => {
                 <p>{lessonId}</p>
                 <div className="content">
                     <h1 className='lesson-title'>{lesson.chosenLesson.name}</h1>
-                    <img id="content-image" src={source}/>
                     <p id="lessonContent" className='lessonContents'>
                     
                     </p>

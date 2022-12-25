@@ -30,8 +30,9 @@ export default function Login() {
 
   return (
     <div className="base">
+       <NavbarComponent/>
       <Container>
-        <NavbarComponent/>
+       
         <Row className="vh-100 d-flex justify-content-center align-items-center">
           <Col md={8} lg={6} xs={12}>
             
