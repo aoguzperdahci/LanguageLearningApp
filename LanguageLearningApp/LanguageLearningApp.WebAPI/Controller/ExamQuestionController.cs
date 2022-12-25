@@ -39,7 +39,7 @@ namespace LanguageLearningApp.WebAPI.Controller
         }
 
         [HttpPost("saveStudentAnswer")]
-        public IActionResult SaveStudentAnswer(int studentId, string answer)
+        public async Task<IActionResult> SaveStudentAnswer(int studentId, string answer)
         {
             var result = _examQuestionService.GetAnswer(studentId, answer);
             if (result.Success)
@@ -50,7 +50,7 @@ namespace LanguageLearningApp.WebAPI.Controller
         }
 
         [HttpGet("getExamResult")]
-        public IActionResult GetExamResult(int studentId)
+        public async Task<IActionResult> GetExamResult(int studentId)
         {
             var result = _examQuestionService.GetExamResult(studentId);
             return Ok(result);
