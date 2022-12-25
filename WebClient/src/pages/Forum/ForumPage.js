@@ -3,11 +3,15 @@ import './ForumPage.css'
 import CloseButton from 'react-bootstrap/CloseButton';
 import { ReactionBarSelector } from '@charkour/react-reactions';
 import { MdEdit } from 'react-icons/md';
+import NavbarComponent from '../../components/NavbarComponent/NavbarComponent'
+import Footer from '../../components/Footer/Footer'
 
 export default function ForumPage() {
     return (
-        <div>
-            <div className="left">
+        <div id="containAll">
+
+            <NavbarComponent/>
+            <div className="left-comments">
 
                 <Card className="contain-comments">
                     <h1 className='comments-header'>Lesson name</h1>
@@ -74,7 +78,7 @@ export default function ForumPage() {
                 </Card>
 
             </div>
-            <div className='right'>
+            <div className='right-comments'>
                 <Card className="contain-forum">
                     <h1 className='form-header'>Leave Comment</h1>
                     <h4 className='form-header2'>Start a discussion!</h4>
@@ -99,7 +103,10 @@ export default function ForumPage() {
                 </Card>
 
             </div>
+            <Footer/>
         </div>
+     
+        
 
 
 

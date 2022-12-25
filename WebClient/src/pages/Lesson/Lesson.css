@@ -9,22 +9,29 @@
     border-color: #3752B4;
     
 }
+#content-image{
+    width:200px;
+    height: 200px;
+}
 
 #list-header{
-    text-align: left;
+    text-align: center;
     margin: 40px;
     color: #FFD753;
 }
 
+
 .content{
     position: absolute;
     top: 50%;
-    left: 30%;
+    left: 38%;
     margin-top:20px;
     transform: translate(-50%, -50%);
     height: 85%;
-    width: 50%;
+    width: 70%;
     background-color: #262626;
+    opacity: 80%;
+    overflow-y: scroll;
     border-radius: 20px;
 }
 
@@ -35,7 +42,7 @@
 #exam-button{
     position: absolute;
     top: 55%;
-    right: 15%;
+    right: 5%;
     width:300px;
     border-radius: 10px;
     height: 35px;
@@ -46,8 +53,8 @@
 
 #dropdownMenu{
     position: absolute;
-    top: 400px;
-    right:-518px;
+    top: 360px;
+    right:-665px;
     width:300px;
     background-color: #3752B4;
     border-color: #3752B4;
@@ -80,13 +87,13 @@
 #question{
     position: absolute;
     top: 25%;
-    right: 14%;
+    right: 2%;
 }
 
 #forum-button{
     position: absolute;
     top: 35%;
-    right: 15%;
+    right: 5%;
     width:300px;
     background-color: #FFD753;
     border-color: #FFD753;
@@ -97,7 +104,7 @@
 #arrow{
     position: absolute;
     top: 30%;
-    right: 24%;
+    right: 14%;
     
 }
 

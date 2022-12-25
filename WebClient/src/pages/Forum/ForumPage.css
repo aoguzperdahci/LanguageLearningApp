@@ -3,13 +3,11 @@
     height: 87%;
     background-color: #D2F1FF;
     margin-top: 10%;
-    
     margin-right: 20%;
 }
 
 .contain-comments{
     margin-top: 10%;
-
     width: 87%;
     height: 87%;
     background-color: #D2F1FF;
@@ -17,15 +15,13 @@
     overflow-y: scroll;
 }
 
-.left{
+.left-comments{
     float: left; width: 50%;
-    background-color: #262626;
     height: 100vh;
 }
 
-.right{
+.right-comments{
     float: right; width: 50%;
-    background-color: #262626;
     height: 100vh;
 }
 
@@ -52,7 +48,15 @@
     margin-left:-300px;
     color: #262626;
 }
-
+label{
+    text-align: left;
+    margin-left: 55px;
+}
+#containAll{
+    background-color: #262626 !important;
+    height: 1000px;
+    width: 100%;
+}
 .form-header2{
     color: #262626;
     margin-left:-400px;
